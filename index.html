@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Lunch Club — Welcome Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0A1F44;
+      --navy-mid:   #12305E;
+      --gold:       #CBA135;
+      --gold-light: #DDB94A;
+      --cream:      #F9F6F1;
+      --cream2:     #EDE8DF;
+      --white:      #FFFFFF;
+      --text-dark:  #1C1C1C;
+      --text-mid:   #4A4A4A;
+      --text-light: #8A8A8A;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      background: #E8E4DC;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── Shared Utilities ────────────────────────────────────── */
+    .serif { font-family: var(--serif); }
+
+    /* Gold divider: ─── TEXT ─── */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 10px 0 18px;
+    }
+    .gold-divider::before,
+    .gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+    }
+    .gold-divider span {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* Section label (eyebrow) */
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* Nutrition pill */
+    .n-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: var(--navy);
+      padding: 9px 16px;
+      margin: 12px 0;
+    }
+    .n-pill .n-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      padding: 0 10px;
+    }
+    .n-pill .n-item:first-child { padding-left: 0; }
+    .n-pill .n-item:last-child  { padding-right: 0; }
+    .n-pill .n-item + .n-item   { border-left: 1px solid rgba(255,255,255,0.15); }
+    .n-pill .n-item strong      { color: var(--gold); font-weight: 600; font-size: 12px; }
+
+    /* Pull quote */
+    .pull-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 14px;
+    }
+
+    /* Page number */
+    .page-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    /* Bottom icons row */
+    .icon-row {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .icon-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .icon-badge .icon-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--cream2);
+      border: 1px solid rgba(203,161,53,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .icon-badge .icon-label {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--text-light);
+      text-align: center;
+      max-width: 52px;
+      line-height: 1.2;
+    }
+
+    /* ── Spread Layout ───────────────────────────────────────── */
+    .spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+      max-width: 1380px;
+      margin: 0 auto 4px;
+    }
+
+    .left-page {
+      background: var(--cream);
+      padding: 56px 48px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border-right: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .right-page {
+      background: var(--white);
+      padding: 56px 48px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COVER
+    ═══════════════════════════════════════════════════════════ */
+    #cover {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 48px;
+      position: relative;
+      max-width: 1380px;
+      margin: 0 auto 4px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    #cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 20%, rgba(203,161,53,0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 80% 85%, rgba(203,161,53,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Decorative border frame */
+    #cover::after {
+      content: '';
+      position: absolute;
+      inset: 32px;
+      border: 1px solid rgba(203,161,53,0.2);
+      pointer-events: none;
+    }
+
+    .cover-eyebrow {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(203,161,53,0.7);
+      margin-bottom: 48px;
+    }
+
+    .cover-ornament {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 18px;
+      letter-spacing: 14px;
+      margin-bottom: 32px;
+      opacity: 0.6;
+    }
+
+    .cover-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(64px, 9vw, 128px);
+      color: var(--cream);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+
+    .cover-title-sub {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 66px);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .cover-rule {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 28px;
+    }
+
+    .cover-subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(15px, 1.8vw, 20px);
+      color: rgba(249,246,241,0.5);
+      letter-spacing: 0.5px;
+      margin-bottom: 60px;
+    }
+
+    .cover-meta {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(249,246,241,0.3);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOUNDER'S LETTER
+    ═══════════════════════════════════════════════════════════ */
+    #founders-letter .left-page { background: var(--cream); }
+
+    #founders-letter .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(46px, 5.5vw, 76px);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.0;
+      margin-bottom: 20px;
+    }
+
+    #founders-letter .byline {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .letter-body p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .letter-signature {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 32px;
+      color: var(--navy);
+      margin-top: 32px;
+      margin-bottom: 4px;
+    }
+
+    .letter-sig-title {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Right side: pull quote box + decorative element */
+    .founder-quote-box {
+      background: var(--navy);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .founder-quote-box::before {
+      content: '\201C';
+      font-family: var(--serif);
+      font-size: 160px;
+      color: var(--gold);
+      opacity: 0.12;
+      position: absolute;
+      top: -24px;
+      left: 12px;
+      line-height: 1;
+    }
+
+    .founder-quote-box p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--cream);
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+
+    .founder-quote-box .attribution {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 20px;
+      font-style: normal;
+    }
+
+    .founder-photo-block {
+      flex: 1;
+      min-height: 200px;
+      background: linear-gradient(135deg, #0e2a56 0%, #1a4080 60%, #0a1f44 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founder-photo-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 60%, rgba(203,161,53,0.12) 0%, transparent 65%);
+    }
+
+    .founder-photo-block span {
+      font-family: var(--serif);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(203,161,53,0.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       OUR PROMISE
+    ═══════════════════════════════════════════════════════════ */
+    #our-promise {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #our-promise .left-page {
+      background: var(--navy);
+      justify-content: space-between;
+    }
+
+    #our-promise .right-page {
+      background: #0e2850;
+    }
+
+    #our-promise .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(46px, 5.5vw, 78px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.0;
+      margin-bottom: 20px;
+    }
+
+    #our-promise .intro {
+      font-size: 14px;
+      color: rgba(249,246,241,0.6);
+      line-height: 1.85;
+      max-width: 380px;
+    }
+
+    .promise-brand-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 22px);
+      color: var(--gold);
+      line-height: 1.5;
+      border-left: 2px solid rgba(203,161,53,0.4);
+      padding-left: 16px;
+      margin-top: 32px;
+    }
+
+    .pillar {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(203,161,53,0.15);
+    }
+    .pillar:last-child { border-bottom: none; }
+
+    .pillar .pillar-num {
+      font-family: var(--serif);
+      font-size: 42px;
+      color: rgba(203,161,53,0.12);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pillar h3 {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .pillar p {
+      font-size: 13px;
+      color: rgba(249,246,241,0.65);
+      line-height: 1.85;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       MENU FAMILIES
+    ═══════════════════════════════════════════════════════════ */
+    #menu-families .left-page { justify-content: space-between; }
+
+    #menu-families .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.0;
+      margin-bottom: 20px;
+    }
+
+    #menu-families .intro {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.85;
+    }
+
+    .family-card {
+      background: var(--cream);
+      border-bottom: 3px solid var(--gold);
+      padding: 28px 24px;
+      margin-bottom: 2px;
+      position: relative;
+    }
+
+    .family-card .f-num {
+      font-family: var(--serif);
+      font-size: 56px;
+      color: rgba(203,161,53,0.12);
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      line-height: 1;
+    }
+
+    .family-card .f-tag {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .family-card h3 {
+      font-family: var(--serif);
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .family-card p {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .kitchen-quote-bar {
+      background: var(--navy);
+      padding: 28px 32px;
+      margin-top: 2px;
+    }
+
+    .kitchen-quote-bar p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--cream);
+      line-height: 1.55;
+    }
+
+    .kitchen-quote-bar .attr {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       POWER BOWLS
+    ═══════════════════════════════════════════════════════════ */
+    #power-bowls .left-page { background: #0e2850; }
+    #power-bowls .right-page { background: var(--navy); }
+
+    #power-bowls .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(46px, 5.5vw, 78px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.0;
+      margin-bottom: 16px;
+    }
+
+    #power-bowls .eyebrow { color: rgba(203,161,53,0.7); }
+
+    #power-bowls .intro {
+      font-size: 14px;
+      color: rgba(249,246,241,0.6);
+      line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    /* Big bowl photo placeholder (left page) */
+    .bowl-hero-photo {
+      flex: 1;
+      min-height: 260px;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 30%, #5a8a3a 0%, #2d5a1a 40%, #1a3a0a 100%);
+    }
+
+    .bowl-hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 60%, rgba(203,161,53,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(180,120,40,0.2) 0%, transparent 40%),
+        linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .bowl-hero-photo::after {
+      content: 'Power Bowls';
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(203,161,53,0.5);
+    }
+
+    .bowl-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(203,161,53,0.15);
+      padding: 22px 20px;
+      margin-bottom: 2px;
+      transition: border-color 0.25s;
+    }
+    .bowl-card:hover { border-color: rgba(203,161,53,0.4); }
+
+    .bowl-card .bowl-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .bowl-card .bowl-tag {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .bowl-card .bowl-desc {
+      font-size: 12px;
+      color: rgba(249,246,241,0.6);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .bowl-card .n-pill { margin: 0; }
+
+    /* ═══════════════════════════════════════════════════════════
+       TRADITIONAL MEALS  (matches reference image 2)
+    ═══════════════════════════════════════════════════════════ */
+    #traditional-meals .left-page { justify-content: space-between; }
+
+    #traditional-meals .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 84px);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 0.95;
+      margin-bottom: 10px;
+    }
+
+    #traditional-meals .intro-italic {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .featured-dish-label {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 26px;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .featured-dish-sub {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    /* Large food photo — left page */
+    .trad-hero-photo {
+      width: 100%;
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      margin: 20px 0 16px;
+      background:
+        radial-gradient(ellipse at 40% 50%, #6aab3a 0%, #2d7a1a 45%, #0f3a08 100%);
+    }
+
+    .trad-hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(220,180,60,0.3) 0%, transparent 45%),
+        radial-gradient(ellipse at 20% 70%, rgba(180,120,20,0.2) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 80%, rgba(200,60,20,0.15) 0%, transparent 30%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
+    }
+
+    .trad-hero-photo::after {
+      content: 'Kerala Sadya · Banana Leaf';
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Three dish cards — right page */
+    .trad-intro-para {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--cream2);
+    }
+
+    .dish-card {
+      display: grid;
+      grid-template-columns: 1fr 88px;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--cream2);
+      align-items: start;
+    }
+    .dish-card:last-of-type { border-bottom: none; }
+
+    .dish-card .d-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+
+    .dish-card .d-sub {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .dish-card .n-pill { margin: 0; }
+
+    /* Dish thumbnail photo */
+    .dish-thumb {
+      width: 88px;
+      height: 88px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .dish-thumb.chettinad {
+      background: radial-gradient(ellipse at 40% 40%, #a83020 0%, #6a1a08 50%, #2a0800 100%);
+    }
+    .dish-thumb.chettinad::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 30%, rgba(220,120,20,0.4) 0%, transparent 50%);
+    }
+
+    .dish-thumb.paneer {
+      background: radial-gradient(ellipse at 50% 40%, #d4763a 0%, #a84520 55%, #5a1a00 100%);
+    }
+    .dish-thumb.paneer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 60%, rgba(240,200,80,0.2) 0%, transparent 50%);
+    }
+
+    .dish-thumb.biryani {
+      background: radial-gradient(ellipse at 50% 35%, #d4aa40 0%, #8a6a10 50%, #3a2a00 100%);
+    }
+    .dish-thumb.biryani::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(180,60,20,0.3) 0%, transparent 45%);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       DAILY SPECIALS  (matches reference image 1)
+    ═══════════════════════════════════════════════════════════ */
+    #daily-specials .left-page  { background: var(--cream); justify-content: space-between; }
+    #daily-specials .right-page { background: var(--white); padding-top: 48px; }
+
+    #daily-specials .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(50px, 6vw, 86px);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 0.95;
+      margin-bottom: 10px;
+    }
+
+    #daily-specials .specials-intro {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.8;
+      text-align: center;
+      max-width: 320px;
+      margin: 0 auto 20px;
+    }
+
+    /* Large food photo — left page */
+    .specials-hero-photo {
+      width: 100%;
+      flex: 1;
+      min-height: 240px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 45% 40%, #c8a020 0%, #8a6010 30%, #3a2800 70%, #1a1000 100%);
+    }
+
+    .specials-hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 60%, rgba(100,160,60,0.3) 0%, transparent 40%),
+        radial-gradient(ellipse at 70% 30%, rgba(220,100,20,0.25) 0%, transparent 40%),
+        radial-gradient(ellipse at 60% 70%, rgba(180,60,10,0.2) 0%, transparent 35%),
+        radial-gradient(ellipse at 30% 25%, rgba(220,180,60,0.2) 0%, transparent 35%),
+        linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.45) 100%);
+    }
+
+    .specials-hero-photo::after {
+      content: 'A Rotating Calendar of Comfort';
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* Weekly grid */
+    .weekly-grid {
+      border: 1px solid #ddd;
+      overflow: hidden;
+    }
+
+    .weekly-grid-header {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      background: var(--navy);
+    }
+
+    .weekly-grid-header .day-col {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      padding: 10px 8px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .weekly-grid-header .day-col:last-child { border-right: none; }
+
+    .weekly-grid-body {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .day-cell {
+      border-right: 1px solid #eeebe6;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .day-cell:last-child { border-right: none; }
+
+    .day-cell .dish-name-sm {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    /* Mini food photo per day */
+    .day-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .day-photo.rajma {
+      background: radial-gradient(ellipse at 50% 40%, #8B4513 0%, #4a1a05 60%, #1a0800 100%);
+    }
+    .day-photo.dalmakhani {
+      background: radial-gradient(ellipse at 50% 40%, #5a3020 0%, #2a1008 60%, #0a0500 100%);
+    }
+    .day-photo.chole {
+      background: radial-gradient(ellipse at 50% 40%, #c89020 0%, #7a5008 60%, #2a1800 100%);
+    }
+    .day-photo.daltadka {
+      background: radial-gradient(ellipse at 50% 40%, #e8a820 0%, #9a6808 60%, #3a2200 100%);
+    }
+    .day-photo.dalpalak {
+      background: radial-gradient(ellipse at 50% 40%, #4a8a1a 0%, #1a4a08 60%, #081a00 100%);
+    }
+
+    .day-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 60% 30%, rgba(255,220,100,0.2) 0%, transparent 50%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.3) 100%);
+    }
+
+    .day-cell .dish-desc-sm {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+
+    /* Average nutrition bar */
+    .avg-nutrition-bar {
+      background: var(--navy);
+      padding: 12px 16px;
+      margin-top: 2px;
+    }
+
+    .avg-nutrition-bar .avg-label {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(249,246,241,0.5);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .avg-nutrition-bar .avg-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .avg-nutrition-bar .avg-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 10px;
+      font-family: var(--sans);
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+    }
+    .avg-nutrition-bar .avg-item + .avg-item { border-left: 1px solid rgba(255,255,255,0.12); }
+    .avg-nutrition-bar .avg-item strong { color: var(--gold); font-weight: 600; }
+
+    .specials-rotation-note {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--text-light);
+      text-align: center;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       EXTRAS
+    ═══════════════════════════════════════════════════════════ */
+    #extras .left-page { justify-content: space-between; }
+
+    #extras .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5.5vw, 76px);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.0;
+      margin-bottom: 16px;
+    }
+
+    #extras .intro { font-size: 14px; color: var(--text-mid); line-height: 1.85; }
+
+    /* Extras hero photo */
+    .extras-hero-photo {
+      width: 100%;
+      flex: 1;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 40%, #e8c060 0%, #a87820 50%, #3a2800 100%);
+    }
+
+    .extras-hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(200,160,60,0.25) 0%, transparent 45%),
+        radial-gradient(ellipse at 70% 30%, rgba(240,200,80,0.2) 0%, transparent 40%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .extras-hero-photo::after {
+      content: "Chef's Recommendations";
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* Extras grid */
+    .extra-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--cream2);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+    }
+    .extra-item:last-child { border-bottom: none; }
+
+    .extra-item .e-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .extra-item .e-tag {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .extra-item .e-note {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+
+    .extra-thumb {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .extra-thumb.parotta {
+      background: radial-gradient(ellipse at 50% 40%, #c8a020 0%, #7a5c08 50%, #2a1a00 100%);
+    }
+    .extra-thumb.curd {
+      background: radial-gradient(ellipse at 50% 40%, #f0f0e0 0%, #d0c880 50%, #807040 100%);
+    }
+    .extra-thumb.kosambari {
+      background: radial-gradient(ellipse at 50% 40%, #90c840 0%, #4a7818 50%, #1a2808 100%);
+    }
+    .extra-thumb.rasam {
+      background: radial-gradient(ellipse at 50% 40%, #d87830 0%, #803808 50%, #2a0800 100%);
+    }
+    .extra-thumb.eggs {
+      background: radial-gradient(ellipse at 50% 40%, #f0e8c0 0%, #c8a840 50%, #604808 100%);
+    }
+    .extra-thumb.payasam {
+      background: radial-gradient(ellipse at 50% 40%, #f0d060 0%, #c89020 50%, #5a3808 100%);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       MEMBERSHIP
+    ═══════════════════════════════════════════════════════════ */
+    #membership .left-page  { background: var(--navy); }
+    #membership .right-page { background: #0c2248; }
+
+    #membership .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5.5vw, 76px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.0;
+      margin-bottom: 8px;
+    }
+
+    #membership .membership-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    #membership .wallet-explainer p {
+      font-size: 13px;
+      color: rgba(249,246,241,0.6);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .tier-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(203,161,53,0.2);
+      padding: 24px 20px;
+      margin-bottom: 2px;
+      position: relative;
+      transition: border-color 0.25s;
+    }
+    .tier-card:hover { border-color: rgba(203,161,53,0.5); }
+
+    .tier-card.featured {
+      border-color: var(--gold);
+      background: rgba(203,161,53,0.06);
+    }
+
+    .tier-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -1px;
+      right: 16px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+    }
+
+    .tier-card .t-name {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .tier-card h3 {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    .tier-card .t-price {
+      font-family: var(--serif);
+      font-size: 38px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .tier-card .t-price-note {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(249,246,241,0.35);
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .tier-card .t-features {
+      list-style: none;
+      border-top: 1px solid rgba(203,161,53,0.12);
+      padding-top: 12px;
+    }
+
+    .tier-card .t-features li {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: rgba(249,246,241,0.65);
+      padding: 6px 0;
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      line-height: 1.4;
+    }
+
+    .tier-card .t-features li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .wallet-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 20px;
+    }
+
+    .wallet-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(203,161,53,0.15);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .wallet-stat .w-val {
+      font-family: var(--serif);
+      font-size: 34px;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .wallet-stat .w-label {
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(249,246,241,0.35);
+      display: block;
+      margin-top: 6px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CLOSING
+    ═══════════════════════════════════════════════════════════ */
+    #closing .left-page  { background: var(--navy); justify-content: space-between; }
+    #closing .right-page { background: var(--cream); }
+
+    #closing .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    #closing .closing-text p {
+      font-size: 14px;
+      color: rgba(249,246,241,0.65);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .closing-quote-box {
+      background: rgba(255,255,255,0.05);
+      border-left: 2px solid var(--gold);
+      padding: 24px 28px;
+      margin-top: 28px;
+    }
+
+    .closing-quote-box p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .closing-quote-box .attribution {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 12px;
+    }
+
+    .steps-list { list-style: none; }
+
+    .steps-list li {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--cream2);
+      align-items: flex-start;
+    }
+
+    .steps-list li .s-num {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--gold);
+      flex-shrink: 0;
+      line-height: 1;
+      width: 24px;
+    }
+
+    .steps-list li .s-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .contact-block { margin-top: 32px; }
+
+    .contact-block h4 {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--cream2);
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--cream2);
+      font-size: 12px;
+    }
+
+    .contact-row .c-label {
+      font-weight: 600;
+      color: var(--navy);
+      width: 56px;
+      flex-shrink: 0;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+
+    .contact-row .c-val { color: var(--text-mid); }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    #footer {
+      background: var(--navy);
+      padding: 48px;
+      text-align: center;
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+
+    #footer .f-brand {
+      font-family: var(--serif);
+      font-size: 30px;
+      color: var(--cream);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    #footer .f-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    #footer .f-legal {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: rgba(249,246,241,0.25);
+      letter-spacing: 0.5px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .spread {
+        grid-template-columns: 1fr;
+      }
+      .left-page, .right-page {
+        padding: 48px 32px;
+      }
+      .trad-hero-photo,
+      .specials-hero-photo,
+      .extras-hero-photo,
+      .bowl-hero-photo { min-height: 200px; }
+    }
+
+    @media (max-width: 600px) {
+      .left-page, .right-page { padding: 36px 20px; }
+      .weekly-grid-header,
+      .weekly-grid-body { grid-template-columns: repeat(5,1fr); }
+      .day-cell { padding: 6px 4px; }
+      .day-cell .dish-name-sm { font-size: 10px; }
+      .day-cell .dish-desc-sm { display: none; }
+      .tier-card { padding: 18px 16px; }
+      #footer { padding: 36px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  COVER
+════════════════════════════════════════════════════════════════ -->
+<section id="cover">
+  <p class="cover-eyebrow">Indiranagar &nbsp;·&nbsp; Bengaluru</p>
+  <div class="cover-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+  <h1 class="cover-title">The Lunch</h1>
+  <h1 class="cover-title-sub">Club</h1>
+  <div class="cover-rule"></div>
+  <p class="cover-subtitle">Welcome Edition — A Curated Lunch Membership for Professionals</p>
+  <p class="cover-meta">Premium Welcome Book &nbsp;·&nbsp; 2024</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  FOUNDER'S LETTER
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="founders-letter">
+
+  <div class="left-page">
+    <p class="eyebrow">A Note from the Founder</p>
+    <h2 class="section-heading">On the Art<br>of Lunch</h2>
+    <div class="gold-divider"><span>Sanatha · Founder, The Lunch Club</span></div>
+
+    <div class="letter-body" style="flex:1;">
+      <p>Lunch should not be an afterthought. It should not be a rushed transaction between two meetings, eaten standing at a counter, washed down with cold coffee. It should be something you look forward to — a pause in the day that reminds you why good work and good food belong together.</p>
+      <p>When I started The Lunch Club, I was not trying to solve a logistics problem. I was trying to restore a ritual. I had spent years watching talented, driven people eat badly — not because they did not care, but because the city had not offered them anything worth caring about.</p>
+      <p>So we built something different. A kitchen where cooks take pride in the grain of their rice. Where a bowl of dal is seasoned the way your grandmother would have — patiently, intuitively, without shortcuts. Where the packaging is considered enough to be part of the experience.</p>
+      <p>The Lunch Club is not a subscription. It is a membership — and the distinction matters. A membership implies trust, continuity, and mutual respect. Welcome to the club. We are glad you are here.</p>
+    </div>
+
+    <div>
+      <div class="letter-signature">Sanatha</div>
+      <div class="letter-sig-title">Founder &nbsp;·&nbsp; The Lunch Club</div>
+    </div>
+    <div class="page-num">02</div>
+  </div>
+
+  <div class="right-page">
+    <div class="founder-quote-box">
+      <p>"Lunch should not be an afterthought. It should be something you look forward to — a pause in the day that reminds you why good work and good food belong together."</p>
+      <div class="attribution">— Sanatha, Founder</div>
+    </div>
+
+    <div class="founder-photo-block">
+      <span>Indiranagar · Est. 2024</span>
+    </div>
+
+    <div style="margin-top:28px;">
+      <p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--text-mid);line-height:1.75;">
+        Every meal that leaves our kitchen carries a small, deliberate act of care. We do not cut corners on things you cannot see — because those are precisely the things you taste.
+      </p>
+    </div>
+    <div class="page-num">03</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  OUR PROMISE
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="our-promise">
+
+  <div class="left-page">
+    <p class="eyebrow" style="color:rgba(203,161,53,0.7);">What We Stand For</p>
+    <h2 class="section-heading">Our<br>Promise</h2>
+    <div class="gold-divider"><span>Three Pillars</span></div>
+    <p class="intro">Three principles underpin everything that leaves our kitchen. They are not policies — they are the standards we hold ourselves to, every single day.</p>
+
+    <div class="promise-brand-quote" style="margin-top:auto;">
+      "We do not just deliver food. We deliver a standard — and that standard travels every metre between our kitchen and your table."
+    </div>
+    <div class="page-num" style="color:rgba(249,246,241,0.3);">04</div>
+  </div>
+
+  <div class="right-page">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h3>Quality</h3>
+      <p>We source from producers we trust and ingredients we can name. Every bowl is assembled to order, never ahead of time, never in bulk. The rice is cooked fresh. The greens are washed the morning they are used. We do not cut corners on things you cannot see — because those are precisely the things you taste.</p>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h3>Packaging</h3>
+      <p>Your lunch arrives in packaging designed to preserve temperature, protect texture, and reduce waste. We use food-safe, compostable materials wherever possible. Our containers are built to travel — so that by the time the meal reaches your desk, it still feels like it was made for you. Because it was.</p>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h3>Reliability</h3>
+      <p>Noon means noon. We know your schedule is not flexible, and we do not treat your time casually. Our delivery windows are tight, our tracking is transparent, and if anything falls short of what we promised, we make it right — no forms, no delays. Your trust is worth more than our efficiency.</p>
+    </div>
+    <div class="page-num" style="color:rgba(249,246,241,0.3);">05</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  MENU FAMILIES
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="menu-families">
+
+  <div class="left-page">
+    <p class="eyebrow">The Menu</p>
+    <h2 class="section-heading">Three<br>Families.</h2>
+    <div class="gold-divider"><span>One Kitchen</span></div>
+    <p class="intro">Our menu is not a list — it is a philosophy made edible. Everything we cook falls into one of three families, each designed for a different kind of appetite. All three share the same kitchen, the same standards, and the same uncompromising attention to how a meal ought to feel.</p>
+
+    <div class="kitchen-quote-bar" style="margin-top:auto;">
+      <p>"We cook the way we wish someone would cook for us — as if time were not a constraint and flavour were the only currency that mattered."</p>
+      <div class="attr">— The Kitchen, The Lunch Club</div>
+    </div>
+    <div class="page-num">06</div>
+  </div>
+
+  <div class="right-page">
+    <div class="family-card">
+      <div class="f-num">I</div>
+      <div class="f-tag">For the Body</div>
+      <h3>Power Bowls</h3>
+      <p>Architecture for appetite. Our bowls are built — not assembled — around a protein, a grain, a fresh element, and a sauce that ties it all together. High in protein, precise in calories, and quietly satisfying in a way that most "healthy" food refuses to be.</p>
+    </div>
+
+    <div class="family-card">
+      <div class="f-num">II</div>
+      <div class="f-tag">For the Soul</div>
+      <h3>Traditional Meals</h3>
+      <p>Recipes that carry memory. Our traditional meals are drawn from the deep culinary grammar of South India — slow-cooked, fully seasoned, and served with everything they were always meant to come with. This is not nostalgia. It is craft.</p>
+    </div>
+
+    <div class="family-card">
+      <div class="f-num">III</div>
+      <div class="f-tag">For the Week</div>
+      <h3>Daily Specials</h3>
+      <p>A rotating calendar of comfort. Our chefs decide each week's rotation based on season, mood, and instinct. What arrives on Tuesday may never come again in quite the same form. That is precisely the point — a lunch worth anticipating.</p>
+    </div>
+    <div class="page-num">07</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  POWER BOWLS
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="power-bowls">
+
+  <div class="left-page">
+    <p class="eyebrow">Menu Family I</p>
+    <h2 class="section-heading">Power<br>Bowls</h2>
+    <div class="gold-divider" style="--gold:rgba(203,161,53,0.5);"><span style="color:rgba(203,161,53,0.7);">High-Protein · Fresh · Balanced</span></div>
+    <p class="intro">Designed for days when performance matters. Each bowl is a complete meal — protein, complex carbohydrate, fresh vegetables, and a signature sauce. Nothing superfluous. Nothing missing.</p>
+
+    <div class="bowl-hero-photo" style="margin-top:20px;"></div>
+
+    <div class="pull-quote" style="margin-top:20px;color:rgba(249,246,241,0.7);border-left-color:var(--gold);">
+      "A bowl that earns its keep at the middle of the working day."
+    </div>
+    <div class="page-num" style="color:rgba(249,246,241,0.3);">08</div>
+  </div>
+
+  <div class="right-page">
+    <div class="bowl-card">
+      <div class="bowl-name">Greek Goddess</div>
+      <div class="bowl-tag">Mediterranean · Vegetarian</div>
+      <p class="bowl-desc">Falafel over warm quinoa, roasted chickpeas, cucumber, cherry tomato, kalamata olives, and a tahini-lemon drizzle. Clean, bright, and deeply satisfying.</p>
+      <div class="n-pill">
+        <div class="n-item"><strong>480</strong> kcal</div>
+        <div class="n-item"><strong>24g</strong> protein</div>
+        <div class="n-item"><strong>42g</strong> carbs</div>
+        <div class="n-item"><strong>14g</strong> fat</div>
+      </div>
+    </div>
+
+    <div class="bowl-card">
+      <div class="bowl-name">Buddha Bowl</div>
+      <div class="bowl-tag">Asian Grain · Vegan</div>
+      <p class="bowl-desc">Brown rice base with roasted sweet potato, steamed broccoli, edamame, purple cabbage, and a miso-sesame glaze. Grounding, generous, complete.</p>
+      <div class="n-pill">
+        <div class="n-item"><strong>460</strong> kcal</div>
+        <div class="n-item"><strong>19g</strong> protein</div>
+        <div class="n-item"><strong>58g</strong> carbs</div>
+        <div class="n-item"><strong>11g</strong> fat</div>
+      </div>
+    </div>
+
+    <div class="bowl-card">
+      <div class="bowl-name">Warrior Bowl</div>
+      <div class="bowl-tag">High-Protein · Non-Veg</div>
+      <p class="bowl-desc">Grilled chicken thigh over red rice with roasted bell peppers, wilted spinach, caramelised onion, and a smoky chipotle yogurt sauce. Built for long afternoons.</p>
+      <div class="n-pill">
+        <div class="n-item"><strong>560</strong> kcal</div>
+        <div class="n-item"><strong>42g</strong> protein</div>
+        <div class="n-item"><strong>46g</strong> carbs</div>
+        <div class="n-item"><strong>16g</strong> fat</div>
+      </div>
+    </div>
+
+    <div class="bowl-card">
+      <div class="bowl-name">Garden Zen</div>
+      <div class="bowl-tag">Light &amp; Fresh · Vegan</div>
+      <p class="bowl-desc">Millets, roasted beetroot, pumpkin seeds, cucumber ribbons, fresh herbs, and a ginger-lime vinaigrette. The bowl for when you need to feel light without feeling deprived.</p>
+      <div class="n-pill">
+        <div class="n-item"><strong>390</strong> kcal</div>
+        <div class="n-item"><strong>14g</strong> protein</div>
+        <div class="n-item"><strong>52g</strong> carbs</div>
+        <div class="n-item"><strong>10g</strong> fat</div>
+      </div>
+    </div>
+    <div class="page-num" style="color:rgba(249,246,241,0.3);">09</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  TRADITIONAL MEALS  (matches reference image 2)
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="traditional-meals">
+
+  <div class="left-page">
+    <p class="eyebrow">Menu Family II</p>
+    <h2 class="section-heading">Traditional<br>Meals</h2>
+    <div class="gold-divider"><span>Authentic · Flavorful · Satisfying</span></div>
+    <p class="intro-italic">Classic dishes that bring the taste of home to your workday.</p>
+
+    <div class="featured-dish-label">Kerala Sadya Feast</div>
+    <div class="featured-dish-sub">An elaborate South Indian vegetarian spread</div>
+    <div class="n-pill">
+      <div class="n-item"><strong>520</strong> CAL</div>
+      <div class="n-item"><strong>12g</strong> PROTEIN</div>
+      <div class="n-item"><strong>86g</strong> CARBS</div>
+      <div class="n-item"><strong>24g</strong> FAT</div>
+    </div>
+
+    <div class="trad-hero-photo"></div>
+
+    <div class="pull-quote">"A vibrant, traditional thali experience."</div>
+    <div class="page-num">10</div>
+  </div>
+
+  <div class="right-page">
+    <p class="trad-intro-para">
+      Some recipes are not invented — they are inherited. Our traditional meals are drawn from culinary traditions that took generations to refine. We honour the original. We do not simplify it.
+    </p>
+
+    <div class="dish-card">
+      <div>
+        <div class="d-name">Chettinad Chicken Curry</div>
+        <div class="d-sub">Spicy and aromatic Chettinad-style chicken</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>CHETTINAD</strong></div>
+          <div class="n-item"><strong>36g</strong> PROTEIN</div>
+          <div class="n-item"><strong>NO EGGS</strong></div>
+          <div class="n-item"><strong>24g</strong> FAT</div>
+        </div>
+      </div>
+      <div class="dish-thumb chettinad"></div>
+    </div>
+
+    <div class="dish-card">
+      <div>
+        <div class="d-name">Paneer Butter Masala</div>
+        <div class="d-sub">Creamy paneer in a rich tomato sauce</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>480</strong> CAL</div>
+          <div class="n-item"><strong>18g</strong> PROTEIN</div>
+          <div class="n-item"><strong>32g</strong> CARBS</div>
+          <div class="n-item"><strong>24g</strong> FAT</div>
+        </div>
+      </div>
+      <div class="dish-thumb paneer"></div>
+    </div>
+
+    <div class="dish-card">
+      <div>
+        <div class="d-name">Hyderabadi Lamb Biryani</div>
+        <div class="d-sub">Fragrant basmati rice with tender lamb</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>550</strong> CAL</div>
+          <div class="n-item"><strong>28g</strong> PROTEIN</div>
+          <div class="n-item"><strong>86g</strong> CARBS</div>
+          <div class="n-item"><strong>22g</strong> FAT</div>
+        </div>
+      </div>
+      <div class="dish-thumb biryani"></div>
+    </div>
+
+    <div class="icon-row" style="margin-top:auto;">
+      <div class="icon-badge">
+        <div class="icon-circle">🌶</div>
+        <div class="icon-label">Bold Spices</div>
+      </div>
+      <div class="icon-badge">
+        <div class="icon-circle">🍲</div>
+        <div class="icon-label">Hearty Portions</div>
+      </div>
+      <div class="icon-badge">
+        <div class="icon-circle">🏡</div>
+        <div class="icon-label">Comfort Classics</div>
+      </div>
+      <div class="icon-badge">
+        <div class="icon-circle">⭐</div>
+        <div class="icon-label">Authentic Flavors</div>
+      </div>
+    </div>
+    <div class="page-num">11</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  DAILY SPECIALS  (matches reference image 1)
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="daily-specials">
+
+  <div class="left-page">
+    <p class="eyebrow">Menu Family III</p>
+    <h2 class="section-heading">Daily<br>Specials</h2>
+    <div class="gold-divider"><span>A Rotating Calendar of Comfort</span></div>
+
+    <p class="specials-intro">Our specials change each week, bringing a new flavor to your lunchtime escape. Here's a sample week of comforting favorites.</p>
+
+    <div class="specials-hero-photo"></div>
+
+    <div class="pull-quote" style="margin-top:16px;">
+      "Same comforting format, five different stories."
+    </div>
+    <div class="page-num">12</div>
+  </div>
+
+  <div class="right-page" style="padding-top:48px;">
+
+    <div class="weekly-grid">
+      <div class="weekly-grid-header">
+        <div class="day-col">Monday</div>
+        <div class="day-col">Tuesday</div>
+        <div class="day-col">Wednesday</div>
+        <div class="day-col">Thursday</div>
+        <div class="day-col">Friday</div>
+      </div>
+
+      <div class="weekly-grid-body">
+        <div class="day-cell">
+          <div class="dish-name-sm">Rajma</div>
+          <div class="day-photo rajma"></div>
+          <div class="dish-desc-sm">Kidney beans &amp; jeera rice</div>
+        </div>
+        <div class="day-cell">
+          <div class="dish-name-sm">Dal Makhani</div>
+          <div class="day-photo dalmakhani"></div>
+          <div class="dish-desc-sm">Creamy black lentil dal</div>
+        </div>
+        <div class="day-cell">
+          <div class="dish-name-sm">Chole</div>
+          <div class="day-photo chole"></div>
+          <div class="dish-desc-sm">Spicy chickpea curry</div>
+        </div>
+        <div class="day-cell">
+          <div class="dish-name-sm">Dal Tadka</div>
+          <div class="day-photo daltadka"></div>
+          <div class="dish-desc-sm">Yellow dal with tadka</div>
+        </div>
+        <div class="day-cell">
+          <div class="dish-name-sm">Dal Palak</div>
+          <div class="day-photo dalpalak"></div>
+          <div class="dish-desc-sm">Spinach dal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="avg-nutrition-bar">
+      <div class="avg-label">— Average This Week —</div>
+      <div class="avg-stats">
+        <div class="avg-item"><strong>420</strong> cal</div>
+        <div class="avg-item"><strong>18g</strong> PROTEIN</div>
+        <div class="avg-item"><strong>52g</strong> CARBS</div>
+        <div class="avg-item"><strong>14g</strong> FAT</div>
+        <div class="avg-item"><strong>8g</strong> FIBRE</div>
+      </div>
+    </div>
+
+    <p class="specials-rotation-note">Rotation varies weekly – check your member portal for today's special.</p>
+
+    <div class="icon-row" style="margin-top:auto;">
+      <div class="icon-badge">
+        <div class="icon-circle">☕</div>
+        <div class="icon-label">Comforting</div>
+      </div>
+      <div class="icon-badge">
+        <div class="icon-circle">🥗</div>
+        <div class="icon-label">Fresh &amp; Tasty</div>
+      </div>
+      <div class="icon-badge">
+        <div class="icon-circle">⚖️</div>
+        <div class="icon-label">Balanced</div>
+      </div>
+      <div class="icon-badge">
+        <div class="icon-circle">🔄</div>
+        <div class="icon-label">New Every Week</div>
+      </div>
+    </div>
+    <div class="page-num">13</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  EXTRAS
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="extras">
+
+  <div class="left-page">
+    <p class="eyebrow">Sides &amp; Add-Ons</p>
+    <h2 class="section-heading">Extras</h2>
+    <div class="gold-divider"><span>Chef's Recommendations</span></div>
+    <p class="intro">Each extra is a chef's deliberate recommendation — a counterpoint designed to complete the meal, not crowd it.</p>
+
+    <div class="extras-hero-photo" style="margin-top:20px;"></div>
+
+    <div class="pull-quote" style="margin-top:20px;">
+      "The right side dish does not compete with the main — it converses with it."
+    </div>
+    <div class="page-num">14</div>
+  </div>
+
+  <div class="right-page">
+    <div class="extra-item">
+      <div>
+        <div class="e-tag">Bread</div>
+        <div class="e-name">Malabar Parotta</div>
+        <div class="e-note">"Layered, lacquered with ghee, fractionally crisp at the edges and cloud-soft at the centre."</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>280</strong> kcal</div>
+          <div class="n-item"><strong>7g</strong> protein</div>
+          <div class="n-item"><strong>9g</strong> fat</div>
+        </div>
+      </div>
+      <div class="extra-thumb parotta"></div>
+    </div>
+
+    <div class="extra-item">
+      <div>
+        <div class="e-tag">Dairy</div>
+        <div class="e-name">Curd Rice</div>
+        <div class="e-note">"Cool, silken, gently sour — tempered with mustard seeds, curry leaf, and green chilli."</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>220</strong> kcal</div>
+          <div class="n-item"><strong>8g</strong> protein</div>
+          <div class="n-item"><strong>5g</strong> fat</div>
+        </div>
+      </div>
+      <div class="extra-thumb curd"></div>
+    </div>
+
+    <div class="extra-item">
+      <div>
+        <div class="e-tag">Salad</div>
+        <div class="e-name">Kosambari</div>
+        <div class="e-note">"Raw moong dal, grated coconut, fresh cucumber, and a lime squeeze. A salad that earns its place."</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>160</strong> kcal</div>
+          <div class="n-item"><strong>9g</strong> protein</div>
+          <div class="n-item"><strong>4g</strong> fat</div>
+        </div>
+      </div>
+      <div class="extra-thumb kosambari"></div>
+    </div>
+
+    <div class="extra-item">
+      <div>
+        <div class="e-tag">Soup</div>
+        <div class="e-name">Pepper Rasam</div>
+        <div class="e-note">"Thin, scalding, ferociously peppery — clears the mind as efficiently as a cold shower."</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>60</strong> kcal</div>
+          <div class="n-item"><strong>3g</strong> protein</div>
+          <div class="n-item"><strong>2g</strong> fat</div>
+        </div>
+      </div>
+      <div class="extra-thumb rasam"></div>
+    </div>
+
+    <div class="extra-item">
+      <div>
+        <div class="e-tag">Dessert</div>
+        <div class="e-name">Payasam</div>
+        <div class="e-note">"Vermicelli in jaggery-sweetened milk with cardamom and cashew. Sweetness as a reward."</div>
+        <div class="n-pill">
+          <div class="n-item"><strong>190</strong> kcal</div>
+          <div class="n-item"><strong>5g</strong> protein</div>
+          <div class="n-item"><strong>7g</strong> fat</div>
+        </div>
+      </div>
+      <div class="extra-thumb payasam"></div>
+    </div>
+
+    <div class="page-num">15</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  MEMBERSHIP
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="membership">
+
+  <div class="left-page">
+    <p class="eyebrow" style="color:rgba(203,161,53,0.7);">Membership</p>
+    <h2 class="section-heading">The Club</h2>
+    <div class="gold-divider" style="--c:rgba(203,161,53,0.3);"><span style="color:rgba(203,161,53,0.7);">Wallet · Tiers · Benefits</span></div>
+    <p class="membership-tagline">Choose your tier. Choose your rhythm.</p>
+
+    <div class="wallet-explainer">
+      <p>Your monthly membership fee loads directly into a meal wallet — a digital balance you draw from each time you order. Every meal is priced transparently in the app. There are no hidden fees, no per-delivery charges.</p>
+      <p>Unused balance rolls over based on your tier. Top-ups are available at any time.</p>
+    </div>
+
+    <div class="wallet-stats">
+      <div class="wallet-stat">
+        <span class="w-val">0%</span>
+        <span class="w-label">Hidden Fees</span>
+      </div>
+      <div class="wallet-stat">
+        <span class="w-val">3</span>
+        <span class="w-label">Tier Options</span>
+      </div>
+      <div class="wallet-stat">
+        <span class="w-val">∞</span>
+        <span class="w-label">Flexibility</span>
+      </div>
+      <div class="wallet-stat">
+        <span class="w-val">1</span>
+        <span class="w-label">Standard: Excellence</span>
+      </div>
+    </div>
+    <div class="page-num" style="color:rgba(249,246,241,0.3);">16</div>
+  </div>
+
+  <div class="right-page">
+    <div class="tier-card">
+      <div class="t-name">Tier 01</div>
+      <h3>Starter</h3>
+      <div class="t-price">₹3,500</div>
+      <div class="t-price-note">per month · 20 meals</div>
+      <ul class="t-features">
+        <li>Full menu access — all three families</li>
+        <li>₹3,500 meal wallet loaded monthly</li>
+        <li>Delivery within Indiranagar core zone</li>
+        <li>Standard 12–1pm delivery window</li>
+        <li>Unused balance rolls over (1 month)</li>
+      </ul>
+    </div>
+
+    <div class="tier-card featured">
+      <div class="t-name">Tier 02</div>
+      <h3>Club</h3>
+      <div class="t-price">₹6,000</div>
+      <div class="t-price-note">per month · 22 meals</div>
+      <ul class="t-features">
+        <li>Full menu + early Daily Specials access</li>
+        <li>₹6,000 wallet · priority 11:45am window</li>
+        <li>Extended delivery zone across Indiranagar</li>
+        <li>Dietary preference profiles in app</li>
+        <li>Rollover balance (2 months)</li>
+        <li>One complimentary guest meal per month</li>
+      </ul>
+    </div>
+
+    <div class="tier-card">
+      <div class="t-name">Tier 03</div>
+      <h3>Executive</h3>
+      <div class="t-price">₹10,000</div>
+      <div class="t-price-note">per month · unlimited</div>
+      <ul class="t-features">
+        <li>Unlimited meals + 10% bonus wallet credit</li>
+        <li>Citywide delivery · member-set time window</li>
+        <li>Priority kitchen access for custom requests</li>
+        <li>No-expiry balance rollover</li>
+        <li>Two guest meals + quarterly tasting invite</li>
+        <li>Dedicated account manager</li>
+      </ul>
+    </div>
+    <div class="page-num">17</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  CLOSING
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="closing">
+
+  <div class="left-page">
+    <p class="eyebrow" style="color:rgba(203,161,53,0.7);">Welcome to The Club</p>
+    <h2 class="section-heading">Your<br>Membership<br>Begins Now</h2>
+    <div class="gold-divider" style="--gold:rgba(203,161,53,0.4);"><span style="color:rgba(203,161,53,0.6);">Next Steps</span></div>
+
+    <div class="closing-text" style="flex:1;">
+      <p>You have joined something worth joining. From this point forward, your lunches will be different: more considered, more nourishing, and more worth sitting down for.</p>
+      <p>Your wallet is loaded, your preferences are noted, and our kitchen is already planning tomorrow's meal with the same care it brought to this welcome book.</p>
+    </div>
+
+    <div class="closing-quote-box">
+      <p>"Every meal we send you is a promise renewed — that craftsmanship still matters, that lunch is worth the effort, and that the middle of your day deserves the best of what we have."</p>
+      <div class="attribution">— Sanatha, Founder · The Lunch Club</div>
+    </div>
+    <div class="page-num" style="color:rgba(249,246,241,0.3);">18</div>
+  </div>
+
+  <div class="right-page">
+    <p class="eyebrow">Getting Started</p>
+    <h3 style="font-family:var(--serif);font-size:28px;color:var(--navy);margin-bottom:20px;">Four Steps to Your First Lunch</h3>
+
+    <ul class="steps-list">
+      <li>
+        <span class="s-num">1</span>
+        <span class="s-text">Download the Lunch Club app and sign in with your registered email. Your wallet and tier details will appear immediately.</span>
+      </li>
+      <li>
+        <span class="s-num">2</span>
+        <span class="s-text">Set your delivery address and preferred time window. The system will confirm your zone and available delivery slots.</span>
+      </li>
+      <li>
+        <span class="s-num">3</span>
+        <span class="s-text">Browse the menu, set your dietary preferences, and place your first order. We recommend the Daily Special for your inaugural lunch.</span>
+      </li>
+      <li>
+        <span class="s-num">4</span>
+        <span class="s-text">Track your delivery in real time. Your first meal will arrive on time. If it does not, we make it right before noon the next day.</span>
+      </li>
+    </ul>
+
+    <div class="contact-block">
+      <h4>Reach Us</h4>
+      <div class="contact-row">
+        <span class="c-label">Where</span>
+        <span class="c-val">Indiranagar, Bengaluru — 560 038</span>
+      </div>
+      <div class="contact-row">
+        <span class="c-label">Hours</span>
+        <span class="c-val">Monday – Friday &nbsp;·&nbsp; 10am – 2pm</span>
+      </div>
+      <div class="contact-row">
+        <span class="c-label">Email</span>
+        <span class="c-val">hello@thelunchclub.in</span>
+      </div>
+      <div class="contact-row">
+        <span class="c-label">Phone</span>
+        <span class="c-val">+91 98765 43210</span>
+      </div>
+      <div class="contact-row">
+        <span class="c-label">App</span>
+        <span class="c-val">iOS &amp; Android — search "The Lunch Club"</span>
+      </div>
+    </div>
+    <div class="page-num">19</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+  FOOTER
+════════════════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="f-brand">The Lunch Club</div>
+  <div class="f-tagline">A curated lunch membership for professionals.</div>
+  <p class="f-legal">© 2024 The Lunch Club &nbsp;·&nbsp; Indiranagar, Bengaluru &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Welcome Edition</p>
+</footer>
+
+</body>
+</html>
