@@ -79,25 +79,27 @@
     /* Nutrition pill */
     .n-pill {
       display: inline-flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0;
       background: var(--navy);
-      padding: 9px 16px;
-      margin: 12px 0;
+      padding: 8px 14px;
+      margin: 10px 0;
+      max-width: 100%;
     }
     .n-pill .n-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       font-family: var(--sans);
-      font-size: 11px;
-      color: rgba(255,255,255,0.55);
-      padding: 0 10px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      padding: 2px 9px;
     }
     .n-pill .n-item:first-child { padding-left: 0; }
     .n-pill .n-item:last-child  { padding-right: 0; }
     .n-pill .n-item + .n-item   { border-left: 1px solid rgba(255,255,255,0.15); }
-    .n-pill .n-item strong      { color: var(--gold); font-weight: 600; font-size: 12px; }
+    .n-pill .n-item strong      { color: var(--gold); font-weight: 600; font-size: 11px; }
 
     /* Pull quote */
     .pull-quote {
@@ -119,39 +121,53 @@
       padding-top: 24px;
     }
 
+    /* SVG grain on all food photo blocks */
+    .bowl-hero-photo,
+    .trad-hero-photo,
+    .specials-hero-photo,
+    .extras-hero-photo,
+    .dish-thumb,
+    .day-photo,
+    .extra-thumb {
+      filter: url(#photo-grain) contrast(1.05) saturate(1.1);
+    }
+
     /* Bottom icons row */
     .icon-row {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       justify-content: flex-end;
       flex-wrap: wrap;
       margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--cream2);
     }
     .icon-badge {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
     .icon-badge .icon-circle {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: var(--cream2);
-      border: 1px solid rgba(203,161,53,0.3);
+      background: var(--cream);
+      border: 1px solid rgba(203,161,53,0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 14px;
+      box-shadow: 0 1px 4px rgba(10,31,68,0.08);
     }
     .icon-badge .icon-label {
       font-family: var(--sans);
-      font-size: 8px;
+      font-size: 7.5px;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       color: var(--text-light);
       text-align: center;
-      max-width: 52px;
+      max-width: 50px;
       line-height: 1.2;
     }
 
@@ -160,26 +176,27 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 100vh;
-      box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.22);
       max-width: 1380px;
-      margin: 0 auto 4px;
+      margin: 0 auto 6px;
     }
 
     .left-page {
       background: var(--cream);
-      padding: 56px 48px 40px;
+      padding: 52px 44px 36px;
       display: flex;
       flex-direction: column;
       position: relative;
-      border-right: 1px solid rgba(0,0,0,0.06);
+      box-shadow: inset -6px 0 18px rgba(0,0,0,0.07);
     }
 
     .right-page {
       background: var(--white);
-      padding: 56px 48px 40px;
+      padding: 52px 44px 36px;
       display: flex;
       flex-direction: column;
       position: relative;
+      box-shadow: inset 2px 0 8px rgba(0,0,0,0.03);
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -581,12 +598,12 @@
     /* Big bowl photo placeholder (left page) */
     .bowl-hero-photo {
       flex: 1;
-      min-height: 260px;
+      min-height: 280px;
       border-radius: 0;
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 50% 30%, #5a8a3a 0%, #2d5a1a 40%, #1a3a0a 100%);
+        radial-gradient(ellipse at 55% 40%, #5a9a28 0%, #2a6010 35%, #0f3208 70%, #061a04 100%);
     }
 
     .bowl-hero-photo::before {
@@ -594,21 +611,23 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 70% 60%, rgba(203,161,53,0.25) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(180,120,40,0.2) 0%, transparent 40%),
-        linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4) 100%);
+        radial-gradient(circle at 65% 35%, rgba(220,180,60,0.45) 0%, transparent 28%),
+        radial-gradient(circle at 30% 55%, rgba(200,80,20,0.3) 0%, transparent 22%),
+        radial-gradient(circle at 75% 65%, rgba(160,60,10,0.25) 0%, transparent 18%),
+        radial-gradient(circle at 20% 30%, rgba(240,200,80,0.2) 0%, transparent 20%),
+        linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.5) 100%);
     }
 
     .bowl-hero-photo::after {
       content: 'Power Bowls';
       position: absolute;
-      bottom: 20px;
-      left: 20px;
+      bottom: 18px;
+      left: 18px;
       font-family: var(--sans);
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: rgba(203,161,53,0.5);
+      color: rgba(203,161,53,0.55);
     }
 
     .bowl-card {
@@ -649,7 +668,7 @@
     /* ═══════════════════════════════════════════════════════════
        TRADITIONAL MEALS  (matches reference image 2)
     ═══════════════════════════════════════════════════════════ */
-    #traditional-meals .left-page { justify-content: space-between; }
+    #traditional-meals .left-page { justify-content: flex-start; }
 
     #traditional-meals .section-heading {
       font-family: var(--serif);
@@ -687,12 +706,13 @@
     /* Large food photo — left page */
     .trad-hero-photo {
       width: 100%;
-      height: 280px;
+      flex: 1;
+      min-height: 200px;
       position: relative;
       overflow: hidden;
-      margin: 20px 0 16px;
+      margin: 16px 0 14px;
       background:
-        radial-gradient(ellipse at 40% 50%, #6aab3a 0%, #2d7a1a 45%, #0f3a08 100%);
+        radial-gradient(ellipse at 45% 45%, #72b830 0%, #3a8018 35%, #155508 65%, #072800 100%);
     }
 
     .trad-hero-photo::before {
@@ -700,22 +720,24 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 70% 30%, rgba(220,180,60,0.3) 0%, transparent 45%),
-        radial-gradient(ellipse at 20% 70%, rgba(180,120,20,0.2) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 80%, rgba(200,60,20,0.15) 0%, transparent 30%),
-        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
+        radial-gradient(circle at 72% 32%, rgba(255,215,80,0.55) 0%, transparent 22%),
+        radial-gradient(circle at 28% 60%, rgba(210,90,15,0.45) 0%, transparent 20%),
+        radial-gradient(circle at 55% 68%, rgba(250,230,180,0.35) 0%, transparent 18%),
+        radial-gradient(circle at 15% 38%, rgba(255,200,60,0.3) 0%, transparent 16%),
+        radial-gradient(circle at 82% 70%, rgba(160,40,10,0.3) 0%, transparent 16%),
+        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 30%, rgba(0,0,0,0.45) 100%);
     }
 
     .trad-hero-photo::after {
       content: 'Kerala Sadya · Banana Leaf';
       position: absolute;
-      bottom: 14px;
-      left: 16px;
+      bottom: 13px;
+      left: 14px;
       font-family: var(--sans);
       font-size: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.38);
     }
 
     /* Three dish cards — right page */
@@ -766,33 +788,42 @@
     }
 
     .dish-thumb.chettinad {
-      background: radial-gradient(ellipse at 40% 40%, #a83020 0%, #6a1a08 50%, #2a0800 100%);
+      background: radial-gradient(ellipse at 45% 40%, #b82810 0%, #780c02 48%, #200400 100%);
     }
     .dish-thumb.chettinad::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 60% 30%, rgba(220,120,20,0.4) 0%, transparent 50%);
+      background:
+        radial-gradient(circle at 65% 28%, rgba(240,140,30,0.6) 0%, transparent 35%),
+        radial-gradient(circle at 30% 65%, rgba(200,60,10,0.35) 0%, transparent 30%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
     }
 
     .dish-thumb.paneer {
-      background: radial-gradient(ellipse at 50% 40%, #d4763a 0%, #a84520 55%, #5a1a00 100%);
+      background: radial-gradient(ellipse at 50% 42%, #d84e18 0%, #a83010 50%, #500800 100%);
     }
     .dish-thumb.paneer::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 40% 60%, rgba(240,200,80,0.2) 0%, transparent 50%);
+      background:
+        radial-gradient(circle at 42% 38%, rgba(255,230,180,0.55) 0%, transparent 28%),
+        radial-gradient(circle at 68% 62%, rgba(255,160,60,0.35) 0%, transparent 25%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
     }
 
     .dish-thumb.biryani {
-      background: radial-gradient(ellipse at 50% 35%, #d4aa40 0%, #8a6a10 50%, #3a2a00 100%);
+      background: radial-gradient(ellipse at 50% 38%, #d4a418 0%, #906010 48%, #301e00 100%);
     }
     .dish-thumb.biryani::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 70%, rgba(180,60,20,0.3) 0%, transparent 45%);
+      background:
+        radial-gradient(circle at 35% 32%, rgba(80,150,30,0.4) 0%, transparent 28%),
+        radial-gradient(circle at 68% 55%, rgba(160,80,10,0.45) 0%, transparent 30%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -829,7 +860,7 @@
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 45% 40%, #c8a020 0%, #8a6010 30%, #3a2800 70%, #1a1000 100%);
+        radial-gradient(ellipse at 48% 42%, #b88018 0%, #7a5008 35%, #301e00 70%, #120c00 100%);
     }
 
     .specials-hero-photo::before {
@@ -837,28 +868,29 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 25% 60%, rgba(100,160,60,0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at 70% 30%, rgba(220,100,20,0.25) 0%, transparent 40%),
-        radial-gradient(ellipse at 60% 70%, rgba(180,60,10,0.2) 0%, transparent 35%),
-        radial-gradient(ellipse at 30% 25%, rgba(220,180,60,0.2) 0%, transparent 35%),
-        linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.45) 100%);
+        radial-gradient(circle at 22% 52%, rgba(90,150,40,0.4) 0%, transparent 28%),
+        radial-gradient(circle at 62% 32%, rgba(220,90,15,0.45) 0%, transparent 28%),
+        radial-gradient(circle at 78% 68%, rgba(200,140,20,0.4) 0%, transparent 24%),
+        radial-gradient(circle at 38% 22%, rgba(240,200,70,0.35) 0%, transparent 22%),
+        radial-gradient(circle at 52% 72%, rgba(160,40,10,0.3) 0%, transparent 20%),
+        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 25%, rgba(0,0,0,0.5) 100%);
     }
 
     .specials-hero-photo::after {
       content: 'A Rotating Calendar of Comfort';
       position: absolute;
-      bottom: 14px;
-      left: 16px;
+      bottom: 13px;
+      left: 14px;
       font-family: var(--sans);
       font-size: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.32);
     }
 
     /* Weekly grid */
     .weekly-grid {
-      border: 1px solid #ddd;
+      border: 1px solid var(--navy);
       overflow: hidden;
     }
 
@@ -870,75 +902,115 @@
 
     .weekly-grid-header .day-col {
       font-family: var(--sans);
-      font-size: 8px;
+      font-size: 7.5px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--cream);
-      padding: 10px 8px;
+      padding: 11px 6px;
       text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.1);
+      border-right: 1px solid rgba(255,255,255,0.12);
     }
     .weekly-grid-header .day-col:last-child { border-right: none; }
 
     .weekly-grid-body {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid #e0dbd2;
     }
 
     .day-cell {
-      border-right: 1px solid #eeebe6;
-      padding: 10px 8px;
+      border-right: 1px solid #e8e4dc;
+      padding: 8px 6px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
     .day-cell:last-child { border-right: none; }
 
     .day-cell .dish-name-sm {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 13px;
+      font-size: 12px;
       color: var(--navy);
       line-height: 1.2;
+      min-height: 28px;
     }
 
     /* Mini food photo per day */
     .day-photo {
       width: 100%;
-      aspect-ratio: 1;
+      aspect-ratio: 0.9;
       position: relative;
       overflow: hidden;
     }
 
     .day-photo.rajma {
-      background: radial-gradient(ellipse at 50% 40%, #8B4513 0%, #4a1a05 60%, #1a0800 100%);
+      background: radial-gradient(ellipse at 48% 42%, #b83a18 0%, #721008 52%, #200400 100%);
     }
-    .day-photo.dalmakhani {
-      background: radial-gradient(ellipse at 50% 40%, #5a3020 0%, #2a1008 60%, #0a0500 100%);
-    }
-    .day-photo.chole {
-      background: radial-gradient(ellipse at 50% 40%, #c89020 0%, #7a5008 60%, #2a1800 100%);
-    }
-    .day-photo.daltadka {
-      background: radial-gradient(ellipse at 50% 40%, #e8a820 0%, #9a6808 60%, #3a2200 100%);
-    }
-    .day-photo.dalpalak {
-      background: radial-gradient(ellipse at 50% 40%, #4a8a1a 0%, #1a4a08 60%, #081a00 100%);
-    }
-
-    .day-photo::before {
+    .day-photo.rajma::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 60% 30%, rgba(255,220,100,0.2) 0%, transparent 50%),
-        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.3) 100%);
+        radial-gradient(circle at 62% 32%, rgba(220,120,40,0.5) 0%, transparent 35%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .day-photo.dalmakhani {
+      background: radial-gradient(ellipse at 50% 42%, #3a1808 0%, #180804 68%, #060200 100%);
+    }
+    .day-photo.dalmakhani::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 55% 40%, rgba(255,240,200,0.35) 0%, transparent 38%),
+        radial-gradient(circle at 30% 65%, rgba(180,80,20,0.3) 0%, transparent 28%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .day-photo.chole {
+      background: radial-gradient(ellipse at 50% 42%, #c07818 0%, #7a4a06 52%, #281400 100%);
+    }
+    .day-photo.chole::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 60% 35%, rgba(240,190,60,0.45) 0%, transparent 35%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .day-photo.daltadka {
+      background: radial-gradient(ellipse at 50% 42%, #e0a818 0%, #9a6a06 52%, #321e00 100%);
+    }
+    .day-photo.daltadka::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 58% 30%, rgba(255,220,80,0.55) 0%, transparent 38%),
+        radial-gradient(circle at 30% 65%, rgba(200,80,10,0.3) 0%, transparent 28%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
+    }
+
+    .day-photo.dalpalak {
+      background: radial-gradient(ellipse at 50% 42%, #3a8018 0%, #185006 52%, #061800 100%);
+    }
+    .day-photo.dalpalak::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 62% 35%, rgba(200,220,80,0.4) 0%, transparent 32%),
+        radial-gradient(circle at 30% 62%, rgba(80,160,20,0.3) 0%, transparent 28%),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
     }
 
     .day-cell .dish-desc-sm {
       font-family: var(--sans);
-      font-size: 9px;
+      font-size: 8px;
       color: var(--text-light);
       line-height: 1.4;
     }
@@ -946,19 +1018,20 @@
     /* Average nutrition bar */
     .avg-nutrition-bar {
       background: var(--navy);
-      padding: 12px 16px;
-      margin-top: 2px;
+      padding: 11px 14px;
+      margin-top: 0;
+      border-top: 2px solid var(--gold);
     }
 
     .avg-nutrition-bar .avg-label {
       font-family: var(--sans);
-      font-size: 8px;
+      font-size: 7.5px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: rgba(249,246,241,0.5);
+      color: rgba(249,246,241,0.45);
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .avg-nutrition-bar .avg-stats {
@@ -973,13 +1046,14 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 0 10px;
+      padding: 0 9px;
       font-family: var(--sans);
       font-size: 10px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
     }
-    .avg-nutrition-bar .avg-item + .avg-item { border-left: 1px solid rgba(255,255,255,0.12); }
-    .avg-nutrition-bar .avg-item strong { color: var(--gold); font-weight: 600; }
+    .avg-nutrition-bar .avg-item + .avg-item { border-left: 1px solid rgba(255,255,255,0.1); }
+    .avg-nutrition-bar .avg-item strong { color: var(--gold); font-weight: 600; font-size: 11px; }
 
     .specials-rotation-note {
       font-family: var(--sans);
@@ -1013,7 +1087,7 @@
       min-height: 200px;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 40%, #e8c060 0%, #a87820 50%, #3a2800 100%);
+      background: radial-gradient(ellipse at 50% 42%, #c89028 0%, #886010 45%, #2c1c04 100%);
     }
 
     .extras-hero-photo::before {
@@ -1021,21 +1095,22 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 30% 60%, rgba(200,160,60,0.25) 0%, transparent 45%),
-        radial-gradient(ellipse at 70% 30%, rgba(240,200,80,0.2) 0%, transparent 40%),
-        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.4) 100%);
+        radial-gradient(circle at 32% 52%, rgba(255,240,180,0.5) 0%, transparent 28%),
+        radial-gradient(circle at 68% 35%, rgba(240,190,60,0.4) 0%, transparent 30%),
+        radial-gradient(circle at 55% 72%, rgba(200,100,20,0.35) 0%, transparent 24%),
+        linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.5) 100%);
     }
 
     .extras-hero-photo::after {
       content: "Chef's Recommendations";
       position: absolute;
-      bottom: 14px;
-      left: 16px;
+      bottom: 13px;
+      left: 14px;
       font-family: var(--sans);
       font-size: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.32);
     }
 
     /* Extras grid */
@@ -1084,22 +1159,58 @@
     }
 
     .extra-thumb.parotta {
-      background: radial-gradient(ellipse at 50% 40%, #c8a020 0%, #7a5c08 50%, #2a1a00 100%);
+      background: radial-gradient(ellipse at 50% 42%, #d4a820 0%, #886008 48%, #281a00 100%);
+    }
+    .extra-thumb.parotta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 55% 35%, rgba(255,230,120,0.5) 0%, transparent 40%), linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.35) 100%);
     }
     .extra-thumb.curd {
-      background: radial-gradient(ellipse at 50% 40%, #f0f0e0 0%, #d0c880 50%, #807040 100%);
+      background: radial-gradient(ellipse at 50% 42%, #e8e4c8 0%, #c0b060 45%, #6a5820 100%);
+    }
+    .extra-thumb.curd::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 45% 40%, rgba(255,250,230,0.7) 0%, transparent 45%), linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.3) 100%);
     }
     .extra-thumb.kosambari {
-      background: radial-gradient(ellipse at 50% 40%, #90c840 0%, #4a7818 50%, #1a2808 100%);
+      background: radial-gradient(ellipse at 50% 42%, #78c030 0%, #3a6810 48%, #102004 100%);
+    }
+    .extra-thumb.kosambari::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 58% 32%, rgba(220,240,120,0.45) 0%, transparent 35%), linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.35) 100%);
     }
     .extra-thumb.rasam {
-      background: radial-gradient(ellipse at 50% 40%, #d87830 0%, #803808 50%, #2a0800 100%);
+      background: radial-gradient(ellipse at 50% 42%, #d06820 0%, #882808 48%, #200600 100%);
+    }
+    .extra-thumb.rasam::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 60% 30%, rgba(255,180,60,0.5) 0%, transparent 38%), linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.4) 100%);
     }
     .extra-thumb.eggs {
-      background: radial-gradient(ellipse at 50% 40%, #f0e8c0 0%, #c8a840 50%, #604808 100%);
+      background: radial-gradient(ellipse at 50% 42%, #e8e0b0 0%, #c0a030 48%, #503808 100%);
+    }
+    .extra-thumb.eggs::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 42% 38%, rgba(255,250,220,0.6) 0%, transparent 35%), linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.3) 100%);
     }
     .extra-thumb.payasam {
-      background: radial-gradient(ellipse at 50% 40%, #f0d060 0%, #c89020 50%, #5a3808 100%);
+      background: radial-gradient(ellipse at 50% 42%, #f0cc50 0%, #c08818 48%, #482800 100%);
+    }
+    .extra-thumb.payasam::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 55% 32%, rgba(255,245,180,0.55) 0%, transparent 38%), linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.3) 100%);
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -1418,6 +1529,18 @@
   </style>
 </head>
 <body>
+
+<!-- SVG filter for photo grain texture (hidden, referenced by CSS) -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden;">
+  <defs>
+    <filter id="photo-grain" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blended"/>
+      <feComposite in="blended" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
 
 <!-- ═══════════════════════════════════════════════════════════════
   COVER
@@ -1749,7 +1872,7 @@
     <div class="page-num">12</div>
   </div>
 
-  <div class="right-page" style="padding-top:48px;">
+  <div class="right-page" style="padding-top:44px;">
 
     <div class="weekly-grid">
       <div class="weekly-grid-header">
@@ -1784,7 +1907,26 @@
         <div class="day-cell">
           <div class="dish-name-sm">Dal Palak</div>
           <div class="day-photo dalpalak"></div>
-          <div class="dish-desc-sm">Spinach dal</div>
+          <div class="dish-desc-sm">Spinach &amp; dal</div>
+        </div>
+      </div>
+
+      <!-- second description row matching reference -->
+      <div class="weekly-grid-body" style="border-top:1px solid #e8e4dc;">
+        <div class="day-cell" style="padding-top:6px;padding-bottom:10px;">
+          <div class="dish-desc-sm" style="font-style:italic;">With steamed rice &amp; raita</div>
+        </div>
+        <div class="day-cell" style="padding-top:6px;padding-bottom:10px;">
+          <div class="dish-desc-sm" style="font-style:italic;">Butter naan or rice</div>
+        </div>
+        <div class="day-cell" style="padding-top:6px;padding-bottom:10px;">
+          <div class="dish-desc-sm" style="font-style:italic;">Bhature or steamed rice</div>
+        </div>
+        <div class="day-cell" style="padding-top:6px;padding-bottom:10px;">
+          <div class="dish-desc-sm" style="font-style:italic;">With phulka &amp; achaar</div>
+        </div>
+        <div class="day-cell" style="padding-top:6px;padding-bottom:10px;">
+          <div class="dish-desc-sm" style="font-style:italic;">With rice &amp; papad</div>
         </div>
       </div>
     </div>
