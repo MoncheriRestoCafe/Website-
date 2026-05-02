@@ -1503,6 +1503,248 @@
     /* ═══════════════════════════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════════
+       WAITLIST
+    ═══════════════════════════════════════════════════════════ */
+    #waitlist .left-page  { background: var(--navy); justify-content: space-between; }
+    #waitlist .right-page { background: var(--cream); }
+
+    #waitlist .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(42px, 5vw, 70px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.0;
+      margin-bottom: 16px;
+    }
+
+    .waitlist-intro {
+      font-size: 14px;
+      color: rgba(249,246,241,0.65);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+
+    .waitlist-benefits { list-style: none; margin-bottom: 36px; }
+
+    .waitlist-benefits li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(203,161,53,0.12);
+      font-size: 13px;
+      color: rgba(249,246,241,0.7);
+      line-height: 1.55;
+    }
+
+    .waitlist-benefits li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .waitlist-social-proof {
+      display: flex;
+      gap: 32px;
+      margin-top: 8px;
+    }
+
+    .proof-stat .p-val {
+      font-family: var(--serif);
+      font-size: 38px;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .proof-stat .p-label {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(249,246,241,0.4);
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* Form */
+    .waitlist-form-wrap { position: relative; }
+
+    .wl-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .wl-field { display: flex; flex-direction: column; gap: 5px; }
+
+    .wl-field label {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .wl-field label .req { color: var(--gold); margin-left: 2px; }
+
+    .wl-field input,
+    .wl-field select {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--text-dark);
+      background: var(--white);
+      border: 1px solid #d4cfc6;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+      width: 100%;
+    }
+
+    .wl-field input:focus,
+    .wl-field select:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(10,31,68,0.08);
+    }
+
+    .wl-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230A1F44' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .wl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .wl-submit-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      border: none;
+      padding: 16px 32px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    .wl-submit-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .wl-submit-btn:active { transform: translateY(0); }
+    .wl-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .wl-privacy {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--text-light);
+      margin-top: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* Success state */
+    .wl-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 32px;
+      background: var(--white);
+      border: 1px solid var(--cream2);
+      min-height: 400px;
+    }
+
+    .wl-success .success-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .wl-success h3 {
+      font-family: var(--serif);
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .wl-success p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 340px;
+    }
+
+    .wl-success .success-pill {
+      background: var(--navy);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      margin-top: 24px;
+    }
+
+    /* Waitlist benefits list */
+    .wl-benefits {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .wl-benefits li {
+      display: flex;
+      gap: 12px;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--cream2);
+      line-height: 1.55;
+    }
+
+    .wl-benefits li strong {
+      color: var(--cream);
+    }
+
+    .wl-bullet {
+      color: var(--gold);
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* Waitlist social proof */
+    .wsp-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .wsp-number {
+      font-family: var(--serif);
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .wsp-label {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(249,246,241,0.5);
+    }
+
     @media (max-width: 900px) {
       .spread {
         grid-template-columns: 1fr;
@@ -1514,6 +1756,7 @@
       .specials-hero-photo,
       .extras-hero-photo,
       .bowl-hero-photo { min-height: 200px; }
+      .wl-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -1525,6 +1768,7 @@
       .day-cell .dish-desc-sm { display: none; }
       .tier-card { padding: 18px 16px; }
       #footer { padding: 36px 20px; }
+      .waitlist-social-proof { gap: 20px; }
     }
   </style>
 </head>
@@ -2222,6 +2466,130 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════════
+  WAITLIST SPREAD  (Spread 10 — pages 20–21)
+════════════════════════════════════════════════════════════════ -->
+<div class="spread" id="waitlist">
+
+  <!-- LEFT — Benefits & Social Proof -->
+  <div class="left-page">
+    <div class="section-eyebrow" style="color:var(--gold);">Join the Club</div>
+    <h2 class="section-title" style="color:var(--cream);font-size:2.6rem;line-height:1.15;margin:10px 0 0;">Reserve<br>Your Spot.</h2>
+
+    <div class="gold-divider" style="margin:22px 0 24px;"></div>
+
+    <p style="font-family:var(--sans);font-size:13px;color:var(--cream2);line-height:1.7;margin:0 0 28px;">
+      The Lunch Club is launching soon in Indiranagar. Membership is capped — join the waitlist today and be first in line when spots open.
+    </p>
+
+    <ul class="wl-benefits">
+      <li><span class="wl-bullet">✦</span><div><strong>Curated daily menus</strong> — Fresh dishes rotating every weekday, crafted by our kitchen team.</div></li>
+      <li><span class="wl-bullet">✦</span><div><strong>Priority access</strong> — Waitlist members choose their tier before public launch.</div></li>
+      <li><span class="wl-bullet">✦</span><div><strong>Founding member pricing</strong> — Lock in launch rates before they rise.</div></li>
+      <li><span class="wl-bullet">✦</span><div><strong>Seamless delivery</strong> — To your desk, every workday. No decisions, no delays.</div></li>
+      <li><span class="wl-bullet">✦</span><div><strong>Premium packaging</strong> — Temperature-stable, spill-proof, and thoughtfully presented.</div></li>
+    </ul>
+
+    <div class="gold-divider" style="margin:28px 0 24px;"></div>
+
+    <div class="waitlist-social-proof">
+      <div class="wsp-stat">
+        <div class="wsp-number">120+</div>
+        <div class="wsp-label">Already on waitlist</div>
+      </div>
+      <div class="wsp-stat">
+        <div class="wsp-number">3</div>
+        <div class="wsp-label">Membership tiers</div>
+      </div>
+      <div class="wsp-stat">
+        <div class="wsp-number">5★</div>
+        <div class="wsp-label">Kitchen rating</div>
+      </div>
+    </div>
+
+    <div class="page-num" style="color:var(--gold);margin-top:auto;padding-top:24px;">20</div>
+  </div>
+
+  <!-- RIGHT — Waitlist Form -->
+  <div class="right-page">
+    <div class="section-eyebrow">Membership Waitlist</div>
+    <h3 style="font-family:var(--serif);font-size:1.6rem;color:var(--navy);margin:6px 0 4px;">Tell us about yourself</h3>
+    <p style="font-family:var(--sans);font-size:12px;color:#666;margin:0 0 22px;line-height:1.6;">We'll reach out personally with your invitation when your preferred tier becomes available.</p>
+
+    <!-- Success state (hidden until form submitted) -->
+    <div class="wl-success" id="wl-success">
+      <div class="success-icon">✦</div>
+      <h3>You're on the list.</h3>
+      <p>Thank you for joining. We'll be in touch with your personalised invitation before the public launch. Welcome to The Lunch Club.</p>
+      <div class="success-pill">Founding Member</div>
+    </div>
+
+    <!-- Form -->
+    <form id="wl-form" novalidate>
+      <div class="wl-row">
+        <div class="wl-field">
+          <label for="wl-name">Full Name <span class="req">*</span></label>
+          <input type="text" id="wl-name" name="name" placeholder="Arjun Sharma" required autocomplete="name">
+        </div>
+        <div class="wl-field">
+          <label for="wl-company">Company</label>
+          <input type="text" id="wl-company" name="company" placeholder="Infosys, Accenture…" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="wl-row">
+        <div class="wl-field">
+          <label for="wl-email">Work Email <span class="req">*</span></label>
+          <input type="email" id="wl-email" name="email" placeholder="arjun@company.com" required autocomplete="email">
+        </div>
+        <div class="wl-field">
+          <label for="wl-mobile">Mobile</label>
+          <input type="tel" id="wl-mobile" name="mobile" placeholder="+91 98765 43210" autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="wl-field">
+        <label for="wl-title">Job Title</label>
+        <input type="text" id="wl-title" name="job_title" placeholder="Software Engineer, Product Manager…" autocomplete="organization-title">
+      </div>
+
+      <div class="wl-row">
+        <div class="wl-field">
+          <label for="wl-tier">Preferred Tier <span class="req">*</span></label>
+          <select id="wl-tier" name="preferred_tier" required>
+            <option value="" disabled selected>Select a tier</option>
+            <option value="essential">Essential — ₹4,500/mo</option>
+            <option value="signature">Signature — ₹6,500/mo</option>
+            <option value="elite">Elite — ₹9,000/mo</option>
+          </select>
+        </div>
+        <div class="wl-field">
+          <label for="wl-source">How did you hear?</label>
+          <select id="wl-source" name="source">
+            <option value="" disabled selected>Select one</option>
+            <option value="colleague">Colleague / Friend</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="instagram">Instagram</option>
+            <option value="flyer">Flyer / Poster</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="wl-submit-btn" id="wl-submit">
+        Reserve My Spot &nbsp;→
+      </button>
+
+      <p class="wl-privacy">
+        Your details are used solely to manage your waitlist position. We never share or sell your information. By submitting you agree to receive one waitlist confirmation and occasional launch updates from The Lunch Club.
+      </p>
+    </form>
+
+    <div class="page-num" style="margin-top:auto;padding-top:16px;">21</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
   FOOTER
 ════════════════════════════════════════════════════════════════ -->
 <footer id="footer">
@@ -2229,6 +2597,56 @@
   <div class="f-tagline">A curated lunch membership for professionals.</div>
   <p class="f-legal">© 2024 The Lunch Club &nbsp;·&nbsp; Indiranagar, Bengaluru &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Welcome Edition</p>
 </footer>
+
+<script>
+(function () {
+  var form = document.getElementById('wl-form');
+  var btn  = document.getElementById('wl-submit');
+  var succ = document.getElementById('wl-success');
+
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name  = form.querySelector('#wl-name').value.trim();
+    var email = form.querySelector('#wl-email').value.trim();
+    var tier  = form.querySelector('#wl-tier').value;
+
+    if (!name) { alert('Please enter your name.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.'); return;
+    }
+    if (!tier) { alert('Please select a preferred membership tier.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    var data = new FormData(form);
+
+    fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        succ.style.display = 'flex';
+      } else {
+        return res.json().then(function (d) {
+          throw new Error(d.error || 'Submission failed.');
+        });
+      }
+    })
+    .catch(function (err) {
+      btn.disabled = false;
+      btn.textContent = 'Reserve My Spot  →';
+      alert(err.message || 'Something went wrong. Please try again.');
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
