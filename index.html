@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find the top 30 verified Japanese Basmati rice importers and buyers. Search by company, city, or category. Includes export guide for India & Pakistan exporters.">
+  <title>Japan Basmati Rice Export Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Variables ─── */
+    :root {
+      --navy:   #0d1b3e;
+      --navy2:  #142248;
+      --navy3:  #1c2d5a;
+      --gold:   #c9a84c;
+      --gold-lt:#f0d98b;
+      --cream:  #fdf8f0;
+      --cream2: #f3ece0;
+      --card-bg:#ffffff;
+      --text:   #1a1a2e;
+      --muted:  #6b7280;
+      --border: #e5e0d8;
+      --green:  #1a6b3a;
+      --purple: #5a2d82;
+      --brown:  #7a4010;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(13,27,62,.10);
+      --shadow-hover: 0 8px 32px rgba(13,27,62,.18);
+      --transition: .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ─── Utility ─── */
+    .container { width: min(1160px, 100%); margin-inline: auto; padding-inline: 24px; }
+    .section-label { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+    /* ─── Nav ─── */
+    #main-nav {
+      position: fixed; top: 0; inset-inline: 0; z-index: 100;
+      background: transparent;
+      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+    }
+    #main-nav.scrolled {
+      background: rgba(13,27,62,.96);
+      box-shadow: 0 2px 20px rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-block: 20px;
+      transition: padding var(--transition);
+    }
+    #main-nav.scrolled .nav-inner { padding-block: 14px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; }
+    .nav-logo svg { flex-shrink: 0; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,.82); font-size: .9rem; font-weight: 500; transition: color var(--transition); }
+    .nav-links a:hover { color: var(--gold-lt); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gold); color: var(--navy); font-weight: 600; font-size: .85rem;
+      padding: 8px 18px; border-radius: 6px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── Hero ─── */
+    #hero {
+      min-height: 100dvh;
+      background: var(--navy);
+      background-image: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(201,168,76,.12) 0%, transparent 65%),
+                        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(26,74,122,.25) 0%, transparent 70%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-flag { display: flex; align-items: center; gap: 8px; color: var(--gold); font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-flag span.dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+    #hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: #fff; line-height: 1.15; margin-bottom: 24px;
+      max-width: 800px;
+    }
+    #hero h1 span { color: var(--gold); }
+    #hero p { color: rgba(255,255,255,.72); font-size: 1.08rem; max-width: 560px; margin-bottom: 40px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy); font-weight: 700; font-size: .95rem;
+      padding: 14px 28px; border-radius: 8px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(201,168,76,.35);
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,.45); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(255,255,255,.3); color: #fff; font-weight: 600; font-size: .95rem;
+      padding: 14px 28px; border-radius: 8px;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,.08); transform: translateY(-2px); }
+    .hero-scroll { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.4); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent); animation: scrollpulse 2s ease-in-out infinite; }
+    @keyframes scrollpulse { 0%,100% { opacity: .4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(.6); } }
+
+    /* ─── Stats ─── */
+    #stats { background: var(--cream); padding: 80px 0; }
+    .stats-header { margin-bottom: 48px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 48px; }
+    .stat-card {
+      background: var(--card-bg); border-radius: var(--radius);
+      padding: 28px 24px; border-top: 3px solid var(--gold);
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: .85rem; font-weight: 500; color: var(--muted); }
+
+    .source-table-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .source-table-title { padding: 18px 24px; background: var(--navy); color: #fff; font-weight: 600; font-size: .92rem; }
+    .source-table { width: 100%; border-collapse: collapse; }
+    .source-table th { background: var(--navy2); color: rgba(255,255,255,.8); padding: 10px 20px; text-align: left; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+    .source-table td { padding: 12px 20px; font-size: .88rem; border-bottom: 1px solid var(--border); }
+    .source-table tr:last-child td { border-bottom: none; }
+    .source-table tr:nth-child(even) td { background: var(--cream); }
+    .bar-wrap { display: flex; align-items: center; gap: 12px; }
+    .bar { height: 8px; border-radius: 4px; background: var(--gold); transition: width .8s ease; }
+
+    /* ─── Directory ─── */
+    #directory { background: var(--cream2); padding: 80px 0 100px; }
+    .directory-header { margin-bottom: 40px; }
+
+    /* Filter bar */
+    .filter-bar {
+      background: var(--card-bg); border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow); margin-bottom: 32px;
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    }
+    .filter-search { position: relative; flex: 1 1 240px; min-width: 200px; }
+    .filter-search input {
+      width: 100%; padding: 10px 40px 10px 16px;
+      border: 2px solid var(--border); border-radius: 8px;
+      font: inherit; font-size: .9rem; color: var(--text);
+      background: var(--cream); transition: border-color var(--transition);
+      outline: none;
+    }
+    .filter-search input:focus { border-color: var(--gold); }
+    .filter-search .search-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    .filter-select {
+      padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px;
+      font: inherit; font-size: .9rem; color: var(--text);
+      background: var(--cream); cursor: pointer; outline: none;
+      transition: border-color var(--transition);
+    }
+    .filter-select:focus { border-color: var(--gold); }
+    .btn-clear {
+      padding: 10px 18px; border: 2px solid var(--border); border-radius: 8px;
+      font-size: .85rem; font-weight: 600; color: var(--muted);
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+    }
+    .btn-clear:hover { border-color: #e0442c; color: #e0442c; background: rgba(224,68,44,.05); }
+    .btn-clear[hidden] { display: none; }
+    .result-count { font-size: .85rem; color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+    /* Cards grid */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+
+    .importer-card {
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 24px;
+      display: flex; flex-direction: column; gap: 0;
+      transition: transform var(--transition), box-shadow var(--transition);
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp .45s ease forwards;
+    }
+    .importer-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
+    .card-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); opacity: .6; line-height: 1; }
+    .badge {
+      display: inline-flex; align-items: center;
+      padding: 3px 10px; border-radius: 20px;
+      font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #fff;
+      flex-shrink: 0;
+    }
+    .badge-corporate { background: #1a4a7a; }
+    .badge-trading   { background: var(--brown); }
+    .badge-halal     { background: var(--green); }
+    .badge-g4wb      { background: var(--purple); }
+
+    .card-name { font-size: 1.02rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+    .card-city { font-size: .82rem; color: var(--muted); display: flex; align-items: center; gap: 5px; margin-bottom: 16px; }
+
+    .card-divider { height: 1px; background: var(--border); margin: 14px 0; }
+
+    .card-contacts { display: flex; flex-direction: column; gap: 8px; font-size: .84rem; }
+    .card-contact-row { display: flex; align-items: flex-start; gap: 8px; }
+    .card-contact-icon { flex-shrink: 0; width: 18px; color: var(--gold); margin-top: 2px; }
+    .card-contact-row a { color: var(--navy); font-weight: 500; word-break: break-all; }
+    .card-contact-row a:hover { color: var(--gold); text-decoration: underline; }
+    .card-contact-row span { color: var(--muted); }
+
+    .card-notes-wrap { margin-top: 14px; }
+    .card-notes {
+      font-size: .82rem; color: var(--muted); line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-notes.expanded { -webkit-line-clamp: unset; overflow: visible; }
+    .btn-toggle-notes {
+      font-size: .78rem; color: var(--gold); font-weight: 600; margin-top: 4px;
+      padding: 0; transition: color var(--transition);
+    }
+    .btn-toggle-notes:hover { color: var(--navy); }
+
+    /* Empty state */
+    .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 24px; }
+    .empty-icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .empty-state h3 { font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .empty-state p { color: var(--muted); font-size: .9rem; }
+
+    /* ─── Export Guide ─── */
+    #guide { background: var(--navy); padding: 90px 0; }
+    #guide .section-title { color: #fff; }
+    .guide-intro { color: rgba(255,255,255,.68); font-size: 1rem; margin-top: 14px; margin-bottom: 52px; max-width: 560px; }
+    .guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .guide-card {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding: 28px 24px;
+      transition: background var(--transition), transform var(--transition);
+      opacity: 0; transform: translateY(18px);
+    }
+    .guide-card.visible { animation: fadeUp .5s ease forwards; }
+    .guide-card:hover { background: rgba(255,255,255,.09); transform: translateY(-4px); }
+    .guide-step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gold); color: var(--navy);
+      font-weight: 800; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; flex-shrink: 0;
+    }
+    .guide-card h3 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .guide-card p { color: rgba(255,255,255,.62); font-size: .85rem; line-height: 1.6; }
+    .guide-card .guide-tag {
+      display: inline-block; margin-top: 12px;
+      padding: 2px 10px; border-radius: 20px; font-size: .72rem; font-weight: 700;
+      background: rgba(201,168,76,.18); color: var(--gold-lt);
+    }
+
+    /* ─── Footer ─── */
+    footer { background: #080f21; color: rgba(255,255,255,.5); padding: 56px 0 32px; }
+    .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-brand p { font-size: .85rem; margin-top: 14px; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: .83rem; margin-bottom: 10px; color: rgba(255,255,255,.5); transition: color var(--transition); }
+    .footer-col a:hover { color: var(--gold-lt); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .78rem; }
+    .footer-bottom span { color: rgba(255,255,255,.32); }
+
+    @media (max-width: 860px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1/-1; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .filter-bar { gap: 10px; }
+      .result-count { margin-left: 0; }
+    }
+    @media (max-width: 400px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Home">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="14" cy="20" rx="9" ry="5" fill="#c9a84c" opacity=".25"/>
+          <ellipse cx="14" cy="14" rx="6" ry="10" fill="#c9a84c" opacity=".5"/>
+          <ellipse cx="14" cy="11" rx="3.5" ry="6" fill="#c9a84c"/>
+          <path d="M11 8 Q14 3 17 8" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+        </svg>
+        Basmati Japan
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#stats">Market Data</a></li>
+        <li><a href="#directory">Importer Directory</a></li>
+        <li><a href="#guide">Export Guide</a></li>
+      </ul>
+      <a href="#directory" class="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Find Buyers
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-flag">
+    <span>India &amp; Pakistan</span>
+    <span class="dot"></span>
+    <span>Export to</span>
+    <span class="dot"></span>
+    <span>Japan 🇯🇵</span>
+  </div>
+  <h1 id="hero-title">Japan <span>Basmati Rice</span><br>Export Assistant</h1>
+  <p>Discover verified importers, active buyers, and everything you need to ship premium Basmati rice to Japan — in one place.</p>
+  <div class="hero-btns">
+    <a href="#directory" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Browse 30 Importers
+    </a>
+    <a href="#guide" class="btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Export Guide
+    </a>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<section id="stats" aria-labelledby="stats-title">
+  <div class="container">
+    <div class="stats-header">
+      <p class="section-label">Market Intelligence</p>
+      <h2 class="section-title" id="stats-title">Japan Basmati Rice Import Market</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">48</div>
+        <div class="stat-label">Annual shipments (Oct 2023–Sep 2024)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">9</div>
+        <div class="stat-label">Active importer companies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">28</div>
+        <div class="stat-label">Total verified Japan basmati buyers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">26%</div>
+        <div class="stat-label">Top single-buyer market share</div>
+      </div>
+    </div>
+
+    <div class="source-table-wrap">
+      <div class="source-table-title">Import Source Breakdown (Oct 2023 – Sep 2024)</div>
+      <table class="source-table" aria-label="Import source breakdown">
+        <thead>
+          <tr>
+            <th>Source Country</th>
+            <th>Shipments</th>
+            <th>Share</th>
+            <th>Volume Bar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🇮🇳 India</td>
+            <td>28</td>
+            <td>58%</td>
+            <td><div class="bar-wrap"><div class="bar" style="width:58%"></div><span style="font-size:.8rem;color:var(--muted)">58%</span></div></td>
+          </tr>
+          <tr>
+            <td>🇵🇰 Pakistan</td>
+            <td>20</td>
+            <td>42%</td>
+            <td><div class="bar-wrap"><div class="bar" style="width:42%"></div><span style="font-size:.8rem;color:var(--muted)">42%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DIRECTORY ═══════════ -->
+<section id="directory" aria-labelledby="dir-title">
+  <div class="container">
+    <div class="directory-header">
+      <p class="section-label">Verified Contacts</p>
+      <h2 class="section-title" id="dir-title">Japanese Basmati Rice Importer Directory</h2>
+    </div>
+
+    <div class="filter-bar" role="search" aria-label="Filter importers">
+      <div class="filter-search">
+        <input type="search" id="search-input" placeholder="Search by name, city, notes…" aria-label="Search importers">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <select id="cat-filter" class="filter-select" aria-label="Filter by category">
+        <option value="">All Categories</option>
+        <option value="Corporate">Corporate Importer</option>
+        <option value="Trading">Trading Company</option>
+        <option value="Halal">Halal Importer</option>
+        <option value="g4WB">go4WB Buyer</option>
+      </select>
+      <select id="city-filter" class="filter-select" aria-label="Filter by city">
+        <option value="">All Cities</option>
+      </select>
+      <button class="btn-clear" id="btn-clear" hidden aria-label="Clear all filters">✕ Clear</button>
+      <span class="result-count" id="result-count" aria-live="polite"></span>
+    </div>
+
+    <div class="card-grid" id="card-grid" aria-label="Importer cards"></div>
+  </div>
+</section>
+
+<!-- ═══════════ EXPORT GUIDE ═══════════ -->
+<section id="guide" aria-labelledby="guide-title">
+  <div class="container">
+    <p class="section-label">How to Export</p>
+    <h2 class="section-title" id="guide-title">8-Step Basmati Export Guide to Japan</h2>
+    <p class="guide-intro">Everything an Indian or Pakistani exporter needs to know before shipping Basmati rice to Japan.</p>
+    <div class="guide-grid" id="guide-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:#fff;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <ellipse cx="14" cy="20" rx="9" ry="5" fill="#c9a84c" opacity=".25"/>
+            <ellipse cx="14" cy="14" rx="6" ry="10" fill="#c9a84c" opacity=".5"/>
+            <ellipse cx="14" cy="11" rx="3.5" ry="6" fill="#c9a84c"/>
+            <path d="M11 8 Q14 3 17 8" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+          </svg>
+          Basmati Japan
+        </div>
+        <p>A free export search tool for Basmati rice exporters targeting the Japanese market. Find verified buyers, importers, and shipping guidance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#stats">Market Data</a>
+        <a href="#directory">Importer Directory</a>
+        <a href="#guide">Export Guide</a>
+      </div>
+      <div class="footer-col">
+        <h4>Data Sources</h4>
+        <a href="https://www.go4worldbusiness.com/buyers/Japan/basmati-rice" target="_blank" rel="noopener">go4WorldBusiness</a>
+        <a href="https://www.volza.com/p/basmati-rice/buyers/buyers-in-japan/" target="_blank" rel="noopener">Volza Trade Intelligence</a>
+        <a href="https://connect2india.com/global/rice-importers-in-Japan" target="_blank" rel="noopener">Connect2India</a>
+      </div>
+      <div class="footer-col">
+        <h4>Regulatory</h4>
+        <a href="https://apeda.gov.in/BasmatiRice" target="_blank" rel="noopener">APEDA Basmati</a>
+        <a href="https://www.customs.go.jp/english/" target="_blank" rel="noopener">Japan Customs</a>
+        <a href="https://www.dgft.gov.in" target="_blank" rel="noopener">DGFT India (IEC)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Basmati Japan Export Assistant. For informational purposes only.</span>
+      <span>Data compiled May 2026 · Sources: Volza, go4WorldBusiness, company websites</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPT ═══════════ -->
+<script>
+/* ── Data ── */
+const IMPORTERS = [
+  {
+    id: 1, category: "Corporate",
+    name: "Kanematsu Chemicals Corporation",
+    city: "Chuo-ku, Tokyo",
+    phone: null, fax: null,
+    email: null, emailLabel: "Contact form", emailHref: "https://kccjp.co.jp/english/contact.html",
+    website: "kccjp.co.jp", websiteHref: "https://kccjp.co.jp/english/",
+    contact: null,
+    notes: "#1 basmati rice importer in Japan (26% market share, 12–23 shipments). Subsidiary of Kanematsu Corporation. Imports from India & Pakistan."
+  },
+  {
+    id: 2, category: "Corporate",
+    name: "Mitsui & Co. Agri Foods Ltd.",
+    city: "Chiyoda-ku, Tokyo",
+    phone: "+81-3-3285-1111", fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "mitsui.com", websiteHref: "https://www.mitsui.com/jp/en/",
+    contact: null,
+    notes: "Joint #1 basmati importer (26% share, 12 shipments). Distributes agricultural products; imports and sells rice, soybeans, nuts, and processed foods."
+  },
+  {
+    id: 3, category: "Trading",
+    name: "Toho Bussan Kaisha Ltd.",
+    city: "Minato-ku, Tokyo",
+    phone: "+81-3-3438-5711", fax: "+81-3-3438-5740",
+    email: "gyomu@tohob.co.jp", emailLabel: null, emailHref: "mailto:gyomu@tohob.co.jp",
+    website: "tohob.co.jp", websiteHref: "https://www.tohob.co.jp/company/english.php",
+    contact: null,
+    notes: "21 shipments of basmati rice. Major food trading company — import, export, off-shore trade of rice, foodstuff, soybean, processed marine products. Est. 1958."
+  },
+  {
+    id: 4, category: "Trading",
+    name: "Sun-Tommy International Co., Ltd.",
+    city: "Tokyo",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "suntommy.co.jp", websiteHref: "http://www.suntommy.co.jp/index-e.html",
+    contact: null,
+    notes: "Tokyo Metropolis Registered Rice Wholesaler (Reg. No. 9-27). SBS-authorised rice importer since 2012. Imports from California, Thailand & China. Listed on go4WorldBusiness."
+  },
+  {
+    id: 5, category: "Trading",
+    name: "Seinan Co., Ltd.",
+    city: "Minato-ku, Tokyo",
+    phone: "+81-3-5467-8303", fax: "+81-3-5467-8304",
+    email: "info-japan@seinangroup.com", emailLabel: null, emailHref: "mailto:info-japan@seinangroup.com",
+    website: "seinangroup.com", websiteHref: "https://www.seinangroup.com/",
+    contact: null,
+    notes: "Rice importer sourcing from global genuine suppliers at competitive prices. Est. Nov 1992, capital ¥10M. Also: import-div@seinan.cc · Mob: 080-3511-3367"
+  },
+  {
+    id: 6, category: "Trading",
+    name: "Ricefriend Co., Ltd. (Tsuda Bussan Group)",
+    city: "Tsurumi-ku, Yokohama",
+    phone: null, fax: null,
+    email: "international@ricefriend.com", emailLabel: null, emailHref: "mailto:international@ricefriend.com",
+    website: "ricefriend.com", websiteHref: "https://ricefriend.com/en/",
+    contact: null,
+    notes: "Specialist rice distributor — revitalising rice distribution and providing stable supply of safe, secure rice to Japan and worldwide."
+  },
+  {
+    id: 7, category: "Corporate",
+    name: "ZEN-NOH International Corporation",
+    city: "Chiyoda-ku, Tokyo",
+    phone: null, fax: null,
+    email: null, emailLabel: "Contact form", emailHref: "http://www.zennoh-intl.com/contact_en.html",
+    website: "zennoh-intl.com", websiteHref: "http://www.zennoh-intl.com/index_en.html",
+    contact: null,
+    notes: "Subsidiary of ZEN-NOH (National Federation of Agricultural Co-operatives). Imports and distributes rice including specialty varieties to Japan. HQ: 7F Hagoromo Bldg., 1-2-10 Uchikanda, Chiyoda-ku."
+  },
+  {
+    id: 8, category: "Trading",
+    name: "Ryoyo Trading Co., Ltd.",
+    city: "Kurashiki City, Okayama",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: null, websiteHref: null,
+    contact: null,
+    notes: "Rice buyer and importer in Japan. Address: Gureisu Kanda 3-24, Kanda 1-chome, Kurashiki City, Okayama-ken 712-8061. Listed on Connect2India as Japanese rice importer."
+  },
+  {
+    id: 9, category: "Corporate",
+    name: "Bank of India – Tokyo Branch",
+    city: "Chiyoda-ku, Tokyo",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "bankofindia.bank.in", websiteHref: "https://bankofindia.bank.in/overseas-contact-us",
+    contact: null,
+    notes: "Appears in Japanese basmati rice import data as importer of record (trade finance / LC). Address: Marunouchi Nakadorii Bldg., 2-2-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005. SWIFT: BKIDJPJT."
+  },
+  {
+    id: 10, category: "Corporate",
+    name: "MUFG Bank (Mitsubishi UFJ)",
+    city: "Chiyoda-ku, Tokyo",
+    phone: "0120-860-777", fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "bk.mufg.jp", websiteHref: "https://www.bk.mufg.jp/global/",
+    contact: null,
+    notes: "#3 basmati importer in Japan (23% share, 11 shipments) as trade finance / LC importer of record. Offers dedicated trade finance & risk advisory for cross-border rice transactions."
+  },
+  {
+    id: 11, category: "Halal",
+    name: "Vishal Co., Ltd.",
+    city: "Joso City, Ibaraki",
+    phone: null, fax: null,
+    email: null, emailLabel: "Contact form", emailHref: "https://www.vishalco-ltd.com/contact",
+    website: "vishalco-ltd.com", websiteHref: "https://www.vishalco-ltd.com/",
+    contact: null,
+    notes: "Importer & distributor of basmati rice, frozen chicken, spices, processed foods from India, Bangladesh, Brazil & USA. Supplies 200+ halal markets, Asian grocers & supermarkets across Japan. Address: 1023-1 Sakatemachi, Joso City, Ibaraki 303-0042."
+  },
+  {
+    id: 12, category: "Halal",
+    name: "Al-Flah Trading Co. (Al-Flah Supermarket)",
+    city: "Ikebukuro, Tokyo",
+    phone: "+81-3-3985-9784", fax: "+81-3-3590-9794",
+    email: "order@al-flah.com", emailLabel: null, emailHref: "mailto:order@al-flah.com",
+    website: "al-flah.com", websiteHref: "https://www.al-flah.com/",
+    contact: null,
+    notes: "Pioneer of halal food trading in Japan since 1987. Imports from Pakistan, India, Thailand, Turkey & Indonesia. Address: Ohnoya Building 4F, 2-41-2 Ikebukuro, Toshima-ku, Tokyo 171-0014. Open: 11AM–11PM."
+  },
+  {
+    id: 13, category: "Halal",
+    name: "AL MODINA Japan",
+    city: "Isesaki City, Gunma",
+    phone: "080-9211-8824", fax: "0270-31-1419",
+    email: "almodina1129@gmail.com", emailLabel: null, emailHref: "mailto:almodina1129@gmail.com",
+    website: "almodinastore.com", websiteHref: "https://almodinastore.com/",
+    contact: null,
+    notes: "Halal food importer & online store. Premium basmati rice, jasmine rice, halal meat & groceries. Address: 3806-1 Naganumamachi, Isesaki, Gunma 372-0855. Hours: 9:00–21:00 daily."
+  },
+  {
+    id: 14, category: "Halal",
+    name: "Shinjuku Halal Food (Gold Lavender Co., Ltd.)",
+    city: "Shinjuku-ku, Tokyo",
+    phone: "+81-3-6869-6171", fax: null,
+    email: "info@shinjukuhalalfood.com", emailLabel: null, emailHref: "mailto:info@shinjukuhalalfood.com",
+    website: "shinjukuhalalfood.com", websiteHref: "https://shinjukuhalalfood.com/",
+    contact: null,
+    notes: "Online halal food importer & retailer. Sells Indian spices, basmati rice, meat, vegetables & snacks. Nationwide delivery. WhatsApp: +81-701-522-2718. Address: Hyakunin-cho 2-9-2, Shinjuku-ku, Tokyo 169-0073. Near JR Shin-Okubo."
+  },
+  {
+    id: 15, category: "Halal",
+    name: "Jannat Halal Food",
+    city: "Katsushika / Shinjuku, Tokyo",
+    phone: "080-5191-0692", fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "jannathalalfood.com", websiteHref: "https://jannathalalfood.com/",
+    contact: null,
+    notes: "Halal grocery importer since 2009. Sells basmati rice (multiple brands), halal meat, lentils, oils, spices & beverages from Middle East, Bangladesh, Pakistan & India. Free delivery across Japan. Also: +81-3-3366-6680."
+  },
+  {
+    id: 16, category: "Halal",
+    name: "Halal Food Japan National Mart",
+    city: "Japan (online)",
+    phone: null, fax: null,
+    email: "info@nationalmart.jp", emailLabel: null, emailHref: "mailto:info@nationalmart.jp",
+    website: "nationalmart.jp", websiteHref: "https://www.nationalmart.jp/",
+    contact: null,
+    notes: "Online halal food store specialising in Indian/Pakistani groceries, basmati rice (HalalStore brand), spices and household staples. Nationwide delivery."
+  },
+  {
+    id: 17, category: "Halal",
+    name: "Nasco Halal Food Shop Japan",
+    city: "Shinjuku, Tokyo / Isesaki, Gunma",
+    phone: "03-5337-2183", fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "nascohalalfood.com", websiteHref: "https://www.nascohalalfood.com/",
+    contact: null,
+    notes: "3 branches: Shinjuku-ku Hyakunin-cho 2-9-3-104 (Tokyo), Hyakunin-cho 2-10-8-101 (Tokyo), Sakai Dodo Higashi 6-10-106 (Gunma). Asian & African halal groceries, basmati rice & atta. Mobile: 080-4086-8651."
+  },
+  {
+    id: 18, category: "Halal",
+    name: "Khan Halal Food (Khan International Co., Ltd.)",
+    city: "Bando City, Ibaraki",
+    phone: "+81-90-5130-7442", fax: null,
+    email: "khaninternationalcoltd@gmail.com", emailLabel: null, emailHref: "mailto:khaninternationalcoltd@gmail.com",
+    website: "khanhalalfoodjpn.com", websiteHref: "https://khanhalalfoodjpn.com/",
+    contact: null,
+    notes: "Halal grocery shop and wholesale rice supplier. Address: 1110-5 Heta, Bando City, Ibaraki 306-0632. Sells basmati rice, oil, fish and daily halal groceries."
+  },
+  {
+    id: 19, category: "Halal",
+    name: "Star Bazar Japan",
+    city: "Koto-ku & Edogawa-ku, Tokyo",
+    phone: "03-6802-9371", fax: "03-6802-9372",
+    email: null, emailLabel: null, emailHref: null,
+    website: "starbazarjapan.com", websiteHref: "https://starbazarjapan.com/",
+    contact: "Viju Shah: 070-1434-0408 · Nagesh Gummulla: 070-1409-8488",
+    notes: "2 stores: 8-22-7 Ojima 1F Koto-ku Tokyo 136-0072 (03-6802-9371) & 5-18-2 Matsue 1F Edogawa-ku Tokyo 132-0025 near Funabori Stn (03-5878-0731). Daawat Rozana, Basmati brands. Hours: 11:00–20:00, closed Mon."
+  },
+  {
+    id: 20, category: "Halal",
+    name: "Maya Bazaar (Maya Universe Pvt. Ltd.)",
+    city: "Shinagawa-ku, Tokyo",
+    phone: "+81-3-5420-2032", fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "mayabazaar.net", websiteHref: "https://www.mayabazaar.net/eng",
+    contact: null,
+    notes: "Indian grocery importer & retailer, 20+ years. Sells basmati rice, spices, atta, ghee, chapati & curry products. Supplies hotels, restaurants & cafes. Address: 3-10-1-203 Kami-Osaki, Shinagawa-ku, Tokyo 141-0021 (2 min from Meguro Stn). Hours: Mon–Sat 10:00–20:00."
+  },
+  {
+    id: 21, category: "Halal",
+    name: "RaraMarket Japan (Rara Holding Co., Ltd.)",
+    city: "Chuo Ward, Kobe, Hyogo",
+    phone: "078-587-2700", fax: null,
+    email: "raramartjapan@gmail.com", emailLabel: null, emailHref: "mailto:raramartjapan@gmail.com",
+    website: "raramarket.jp", websiteHref: "https://raramarket.jp/",
+    contact: null,
+    notes: "E-commerce marketplace for halal food, spices, basmati rice, electronics & clothing. Founded 2021. Address: Motomachi Plaza 601-E, 2-9-1 Motomachidori, Chuo Ward, Kobe, Hyogo 650-0022. Listed as go4WB buyer (Senze/Raramart Japan)."
+  },
+  {
+    id: 22, category: "Halal",
+    name: "Spice Home Japan",
+    city: "Koto-ku, Tokyo (Ojima)",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "spicehomejapan.com", websiteHref: "https://spicehomejapan.com/",
+    contact: null,
+    notes: "Japanese import specialist for authentic food products from around the globe: rice, beans, fresh vegetables, Indian spices & groceries. Wholesale and retail."
+  },
+  {
+    id: 23, category: "Halal",
+    name: "Spice House Co., Ltd.",
+    city: "Sagamihara, Kanagawa",
+    phone: null, fax: null,
+    email: null, emailLabel: "Contact form", emailHref: "https://www.spice-house.com/en/blank-5",
+    website: "spice-house.com", websiteHref: "https://www.spice-house.com/en",
+    contact: null,
+    notes: "Halal food importer, wholesaler & retailer (HAJJI BABA retail brand). Imports frozen meats, spices, dried beans, wheat flour, basmati rice, dried fruits & nuts."
+  },
+  {
+    id: 24, category: "Halal",
+    name: "Gunma Halal Food",
+    city: "Tatebayashi, Gunma",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "gunmahalalfood.com", websiteHref: "https://gunmahalalfood.com/",
+    contact: null,
+    notes: "Halal grocery store & online shop. Address: タツザワビル 1, 2A, 222 Narushimacho, Tatebayashi, Gunma 374-0055. Sells basmati rice, halal meat & Asian groceries. Nationwide delivery."
+  },
+  {
+    id: 25, category: "Halal",
+    name: "MT Halal Mart",
+    city: "Japan (online)",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "mthalal.com", websiteHref: "https://mthalal.com/",
+    contact: null,
+    notes: "Premium halal food online importer. Sells basmati rice, halal chicken, beef, Indian spices & groceries. Fast nationwide delivery across Japan."
+  },
+  {
+    id: 26, category: "Halal",
+    name: "Sonali Halal Food & Cafe",
+    city: "Japan (online)",
+    phone: null, fax: null,
+    email: null, emailLabel: null, emailHref: null,
+    website: "onlinehalalfood.com", websiteHref: "https://onlinehalalfood.com/",
+    contact: null,
+    notes: "Online halal food importer. Sells halal meat, beef, chicken, fish, spices, basmati rice & sweets. Delivery across Japan."
+  },
+  {
+    id: 27, category: "g4WB",
+    name: "Mr. Pillai — Active Buyer",
+    city: "Tokyo",
+    phone: null, fax: null,
+    email: null, emailLabel: "Login to contact", emailHref: "https://www.go4worldbusiness.com/buyers/Japan/basmati-rice",
+    website: "go4worldbusiness.com", websiteHref: "https://www.go4worldbusiness.com/buyers/Japan/basmati-rice",
+    contact: "Mr. Pillai",
+    notes: "go4WorldBusiness active buyer. Seeks: Long Grain White Basmati (Sella 1121, Sona Masoori, Pusa Basmati). Qty: 1×20ft container. Terms: FOB or CIF. Payment: Bank Transfer. Source: Worldwide. Destination: Tokyo."
+  },
+  {
+    id: 28, category: "g4WB",
+    name: "Mr. Okoba — Active Buyer",
+    city: "Nagoya, Aichi",
+    phone: null, fax: null,
+    email: null, emailLabel: "Login to contact", emailHref: "https://www.go4worldbusiness.com/buyers/Japan/basmati-rice",
+    website: "go4worldbusiness.com", websiteHref: "https://www.go4worldbusiness.com/buyers/Japan/basmati-rice",
+    contact: "Mr. Okoba",
+    notes: "go4WorldBusiness active buyer. Seeks: Basmati, Non-basmati, Long Grain, Short Grain, Matta Rice, Ponni Rice. Qty: 1×20ft container. Terms: FOB or CIF. Payment: LC. Source: Worldwide. Destination: Nagoya."
+  },
+  {
+    id: 29, category: "g4WB",
+    name: "Anita / Khawar Mahmood M — Active Buyers",
+    city: "Japan",
+    phone: null, fax: null,
+    email: null, emailLabel: "Login to contact", emailHref: "https://www.go4worldbusiness.com/buyers/Japan/basmati-rice",
+    website: "go4worldbusiness.com", websiteHref: "https://www.go4worldbusiness.com/buyers/Japan/basmati-rice",
+    contact: "Anita / Khawar Mahmood M",
+    notes: "go4WorldBusiness active buyers. Seek: White Basmati / Non-Basmati Rice (broken ratio 2–5%) for daily use. Thai, Australian & Korean varieties also considered. Qty: MOQ 1 container. Terms: CIF. Payment: Bank Transfer."
+  },
+  {
+    id: 30, category: "g4WB",
+    name: "Khatiwada Raman — Active Buyer",
+    city: "Japan",
+    phone: null, fax: null,
+    email: null, emailLabel: "Login to contact", emailHref: "https://www.go4worldbusiness.com/buyers/japan/rice.html",
+    website: "go4worldbusiness.com", websiteHref: "https://www.go4worldbusiness.com/buyers/japan/rice.html",
+    contact: "Khatiwada Raman",
+    notes: "go4WorldBusiness active buyer. Seeks rice varieties including basmati. Qty: 20 tons (CIF, L/C) or 5,000 kg (FOB, T/T). Source: Japan or overseas suppliers."
+  }
+];
+
+/* ── Guide Steps ── */
+const GUIDE_STEPS = [
+  {
+    num: 1, tag: "Regulatory",
+    title: "Register & Obtain IEC",
+    body: "Obtain an Import Export Code (IEC) from India's DGFT (Directorate General of Foreign Trade). This is mandatory for all Basmati rice exports from India."
+  },
+  {
+    num: 2, tag: "Certification",
+    title: "Quality & Certification",
+    body: "Register with APEDA (Agricultural & Processed Food Products Export Development Authority). Obtain a phytosanitary certificate and pass pesticide residue tests — Japan has strict MRL standards."
+  },
+  {
+    num: 3, tag: "Customs",
+    title: "Understand Japan Customs Rules",
+    body: "Basmati rice falls under HS Code 1006.30. Japan uses an SBS (Simultaneous Buy-Sell) import system for rice. Your shipment will undergo quarantine inspection by the Plant Protection Station."
+  },
+  {
+    num: 4, tag: "Compliance",
+    title: "Japanese Labelling Law",
+    body: "Japanese Food Labelling Standards (食品表示基準) require labels in Japanese including: product name, origin country, net weight, importer name & address, and allergen information."
+  },
+  {
+    num: 5, tag: "Logistics",
+    title: "Choose Incoterms & Payment",
+    body: "CIF (Tokyo, Yokohama, or Osaka port) is most common for Japanese buyers. LC (Letter of Credit) is preferred by large corporate buyers; Bank Transfer (TT) for smaller halal importers."
+  },
+  {
+    num: 6, tag: "Shipping",
+    title: "Sea Freight to Japan",
+    body: "Average transit time from India to Japan: 18–25 days by sea. Use a licensed freight forwarder and consider a Japan-side customs broker (通関業者) for smooth clearance."
+  },
+  {
+    num: 7, tag: "Sales",
+    title: "Contact Buyers Directly",
+    body: "Start with corporate importers (Kanematsu, Toho Bussan, Mitsui) for large volume orders. Approach halal importers (Vishal, Al-Flah, Star Bazar) for niche market penetration. Use the directory above."
+  },
+  {
+    num: 8, tag: "Ongoing",
+    title: "Stay Compliant & Renew",
+    body: "Renew APEDA registration annually. Comply with Japan's Food Sanitation Act — random port inspections occur. Monitor Japan's MRL (pesticide residue) updates via the Ministry of Health, Labour and Welfare."
+  }
+];
+
+/* ── Badge helpers ── */
+const BADGE_CLASS = {
+  Corporate: "badge-corporate",
+  Trading: "badge-trading",
+  Halal: "badge-halal",
+  g4WB: "badge-g4wb"
+};
+const BADGE_LABEL = {
+  Corporate: "Corporate",
+  Trading: "Trading Co.",
+  Halal: "Halal",
+  g4WB: "go4WB Buyer"
+};
+
+/* ── Build city dropdown ── */
+function buildCityDropdown() {
+  const sel = document.getElementById("city-filter");
+  const cities = [...new Set(IMPORTERS.map(i => i.city))].sort();
+  cities.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+/* ── Card HTML ── */
+function cardHTML(imp) {
+  const delay = `${((imp.id - 1) % 9) * 0.05}s`;
+
+  let contactRows = "";
+  if (imp.phone) {
+    contactRows += `<div class="card-contact-row">
+      <svg class="card-contact-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="tel:${imp.phone}">${imp.phone}</a>
+    </div>`;
+  }
+  if (imp.fax) {
+    contactRows += `<div class="card-contact-row">
+      <svg class="card-contact-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 17 13 17"/><polyline points="14 22 14 17"/><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+      <span>Fax: ${imp.fax}</span>
+    </div>`;
+  }
+  if (imp.emailHref) {
+    const label = imp.emailLabel || imp.email;
+    contactRows += `<div class="card-contact-row">
+      <svg class="card-contact-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="${imp.emailHref}" target="${imp.email ? '_self' : '_blank'}" rel="noopener">${label}</a>
+    </div>`;
+  }
+  if (imp.websiteHref) {
+    contactRows += `<div class="card-contact-row">
+      <svg class="card-contact-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <a href="${imp.websiteHref}" target="_blank" rel="noopener">${imp.website || imp.websiteHref}</a>
+    </div>`;
+  }
+  if (imp.contact) {
+    contactRows += `<div class="card-contact-row">
+      <svg class="card-contact-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>${imp.contact}</span>
+    </div>`;
+  }
+  if (!contactRows) {
+    contactRows = `<div class="card-contact-row"><span style="color:var(--muted);font-style:italic;font-size:.82rem;">Login at go4WorldBusiness for full details</span></div>`;
+  }
+
+  return `
+    <article class="importer-card" style="animation-delay:${delay}" aria-labelledby="card-name-${imp.id}">
+      <div class="card-top">
+        <div class="card-num">${String(imp.id).padStart(2, "0")}</div>
+        <span class="badge ${BADGE_CLASS[imp.category]}" aria-label="Category: ${BADGE_LABEL[imp.category]}">${BADGE_LABEL[imp.category]}</span>
+      </div>
+      <h3 class="card-name" id="card-name-${imp.id}">${imp.name}</h3>
+      <p class="card-city">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${imp.city}
+      </p>
+      <div class="card-divider"></div>
+      <div class="card-contacts">${contactRows}</div>
+      <div class="card-notes-wrap">
+        <div class="card-divider"></div>
+        <p class="card-notes" id="notes-${imp.id}">${imp.notes}</p>
+        <button class="btn-toggle-notes" onclick="toggleNotes(${imp.id}, this)" aria-controls="notes-${imp.id}" aria-expanded="false">Show more ↓</button>
+      </div>
+    </article>`;
+}
+
+/* ── Render ── */
+function renderCards(list) {
+  const grid = document.getElementById("card-grid");
+  const count = document.getElementById("result-count");
+
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>No importers found</h3>
+        <p>Try adjusting your search or clearing the filters.</p>
+      </div>`;
+    count.textContent = "0 results";
+    return;
+  }
+
+  grid.innerHTML = list.map(cardHTML).join("");
+  count.textContent = `Showing ${list.length} of ${IMPORTERS.length} importers`;
+}
+
+/* ── Filter ── */
+function applyFilters() {
+  const q = document.getElementById("search-input").value.toLowerCase().trim();
+  const cat = document.getElementById("cat-filter").value;
+  const city = document.getElementById("city-filter").value;
+  const btnClear = document.getElementById("btn-clear");
+  const active = q || cat || city;
+  btnClear.hidden = !active;
+
+  const filtered = IMPORTERS.filter(imp => {
+    const matchQ = !q || [imp.name, imp.city, imp.notes || "", imp.contact || "", imp.email || ""].some(f => f.toLowerCase().includes(q));
+    const matchCat = !cat || imp.category === cat;
+    const matchCity = !city || imp.city === city;
+    return matchQ && matchCat && matchCity;
+  });
+  renderCards(filtered);
+}
+
+/* ── Toggle notes ── */
+function toggleNotes(id, btn) {
+  const el = document.getElementById(`notes-${id}`);
+  const expanded = el.classList.toggle("expanded");
+  btn.textContent = expanded ? "Show less ↑" : "Show more ↓";
+  btn.setAttribute("aria-expanded", expanded);
+}
+
+/* ── Guide ── */
+function buildGuide() {
+  const grid = document.getElementById("guide-grid");
+  grid.innerHTML = GUIDE_STEPS.map((s, i) => `
+    <div class="guide-card" style="animation-delay:${i * 0.07}s" aria-label="Step ${s.num}: ${s.title}">
+      <div class="guide-step-num">${s.num}</div>
+      <h3>${s.title}</h3>
+      <p>${s.body}</p>
+      <span class="guide-tag">${s.tag}</span>
+    </div>`).join("");
+
+  /* IntersectionObserver for guide cards */
+  const cards = grid.querySelectorAll(".guide-card");
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  cards.forEach(c => obs.observe(c));
+}
+
+/* ── Nav shrink on scroll ── */
+function initNav() {
+  const nav = document.getElementById("main-nav");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 60);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+/* ── Boot ── */
+document.addEventListener("DOMContentLoaded", () => {
+  buildCityDropdown();
+  renderCards(IMPORTERS);
+  buildGuide();
+  initNav();
+
+  document.getElementById("search-input").addEventListener("input", applyFilters);
+  document.getElementById("cat-filter").addEventListener("change", applyFilters);
+  document.getElementById("city-filter").addEventListener("change", applyFilters);
+  document.getElementById("btn-clear").addEventListener("click", () => {
+    document.getElementById("search-input").value = "";
+    document.getElementById("cat-filter").value = "";
+    document.getElementById("city-filter").value = "";
+    applyFilters();
+  });
+});
+</script>
+</body>
+</html>
