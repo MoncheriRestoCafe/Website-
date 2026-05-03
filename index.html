@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walstall — Global Consumer Trading & Exports</title>
+  <meta name="description" content="Walstall is your premier partner for consumer goods trading and exports. 50,000+ verified products, 120+ countries, world-class trade services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Tokens ─────────────────────────────────── */
+    :root {
+      --navy:        #08111F;
+      --navy-mid:    #0F1E35;
+      --navy-card:   #13243E;
+      --navy-light:  #1A3256;
+      --gold:        #C9993A;
+      --gold-mid:    #D4A84B;
+      --gold-light:  #ECC96B;
+      --gold-pale:   #F5E9C8;
+      --white:       #FFFFFF;
+      --off-white:   #F7F8FA;
+      --gray-100:    #EEF0F4;
+      --gray-200:    #DDE0E8;
+      --gray-400:    #9AA3B4;
+      --gray-600:    #5C6577;
+      --text-dark:   #0D1526;
+      --text-mid:    #3D4758;
+      --text-light:  #8590A2;
+      --success:     #22C55E;
+      --syne:        'Syne', system-ui, sans-serif;
+      --inter:       'Inter', system-ui, sans-serif;
+      --serif:       'DM Serif Display', Georgia, serif;
+      --radius-sm:   6px;
+      --radius:      12px;
+      --radius-lg:   20px;
+      --radius-xl:   28px;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,.06);
+      --shadow:      0 6px 24px rgba(0,0,0,.10);
+      --shadow-lg:   0 16px 48px rgba(0,0,0,.14);
+      --shadow-gold: 0 8px 32px rgba(201,153,58,.22);
+      --trans:       .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    body {
+      font-family: var(--inter);
+      font-size: 16px;
+      line-height: 1.65;
+      background: var(--white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ──────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ── Utilities ──────────────────────────────── */
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 48px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--syne); font-size: 11px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: ''; width: 24px; height: 2px; background: var(--gold); border-radius: 2px;
+    }
+    .section-title {
+      font-family: var(--syne); font-size: clamp(28px, 3.6vw, 44px);
+      font-weight: 700; line-height: 1.18; color: var(--text-dark);
+    }
+    .section-title.light { color: var(--white); }
+    .section-sub {
+      font-size: 17px; line-height: 1.7; color: var(--text-mid);
+      max-width: 560px; margin-top: 14px;
+    }
+    .section-sub.light { color: rgba(255,255,255,.65); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--syne); font-size: 14px; font-weight: 600;
+      letter-spacing: .03em; padding: 13px 26px; border-radius: var(--radius-sm);
+      cursor: pointer; border: none; text-decoration: none;
+      transition: all var(--trans); white-space: nowrap;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .btn-outline-gold {
+      background: transparent; color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+    .btn-outline-white {
+      background: transparent; color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.4);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.7); }
+    .btn-dark {
+      background: var(--navy); color: var(--white);
+    }
+    .btn-dark:hover { background: var(--navy-light); transform: translateY(-2px); }
+    .tag {
+      display: inline-flex; align-items: center;
+      font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 4px; background: var(--gold-pale); color: var(--gold);
+    }
+
+    /* ── NAV ────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      transition: all var(--trans);
+    }
+    #nav.scrolled {
+      background: rgba(8,17,31,.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,153,58,.15);
+      box-shadow: 0 4px 32px rgba(0,0,0,.3);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; gap: 32px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo-mark {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--syne); font-size: 18px; font-weight: 800; color: var(--navy);
+    }
+    .nav-logo-text {
+      font-family: var(--syne); font-size: 20px; font-weight: 800;
+      color: var(--white); letter-spacing: .02em;
+    }
+    .nav-logo-text span { color: var(--gold); }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+      list-style: none; flex: 1; justify-content: center;
+    }
+    .nav-links a {
+      font-family: var(--syne); font-size: 13.5px; font-weight: 500;
+      color: rgba(255,255,255,.75); text-decoration: none; padding: 8px 14px;
+      border-radius: var(--radius-sm); transition: all var(--trans);
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,.07); }
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-lang {
+      font-family: var(--syne); font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,.6); cursor: pointer;
+      padding: 6px 10px; border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+    }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 8px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px; transition: all var(--trans);
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); z-index: 998; padding: 32px 28px;
+      flex-direction: column; gap: 8px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--syne); font-size: 20px; font-weight: 600;
+      color: var(--white); text-decoration: none; padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .mobile-menu .btn { margin-top: 24px; justify-content: center; }
+
+    /* ── HERO ───────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .hero-bg-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201,153,58,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,153,58,.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .hero-bg-glow {
+      position: absolute; pointer-events: none;
+      border-radius: 50%; filter: blur(80px);
+    }
+    .hero-glow-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,153,58,.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+    }
+    .hero-glow-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(26,50,86,.8) 0%, transparent 70%);
+      bottom: 0; left: -80px;
+    }
+    .hero-glow-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(201,153,58,.08) 0%, transparent 70%);
+      top: 40%; left: 30%;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      flex: 1; display: flex; align-items: center;
+      padding: 140px 0 80px;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero-left {}
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(201,153,58,.1); border: 1px solid rgba(201,153,58,.25);
+      border-radius: 100px; padding: 6px 16px; margin-bottom: 28px;
+      font-family: var(--syne); font-size: 12px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--gold);
+    }
+    .hero-label-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.7); }
+    }
+    .hero-heading {
+      font-family: var(--syne); font-size: clamp(38px, 5vw, 64px);
+      font-weight: 800; line-height: 1.08; color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero-heading .gold-text { color: var(--gold); }
+    .hero-heading .italic-text {
+      font-family: var(--serif); font-style: italic;
+      font-weight: 400; color: rgba(255,255,255,.75);
+    }
+    .hero-sub {
+      font-size: 17px; line-height: 1.72; color: rgba(255,255,255,.6);
+      max-width: 460px; margin-bottom: 40px;
+    }
+    .hero-ctas { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .hero-arrow {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px;
+    }
+    .hero-right { position: relative; }
+    .hero-card-stack { position: relative; }
+    .hero-main-card {
+      background: linear-gradient(135deg, var(--navy-card) 0%, var(--navy-light) 100%);
+      border: 1px solid rgba(201,153,58,.2);
+      border-radius: var(--radius-xl);
+      padding: 32px; position: relative; overflow: hidden;
+    }
+    .hero-main-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(201,153,58,.08), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-card-label {
+      font-family: var(--syne); font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .hero-product-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .hero-product-item {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius); padding: 16px 12px;
+      text-align: center; transition: all var(--trans); cursor: pointer;
+    }
+    .hero-product-item:hover {
+      background: rgba(201,153,58,.08); border-color: rgba(201,153,58,.3);
+      transform: translateY(-3px);
+    }
+    .hero-product-icon {
+      font-size: 26px; margin-bottom: 8px; display: block;
+    }
+    .hero-product-name {
+      font-family: var(--syne); font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,.7); line-height: 1.3;
+    }
+    .hero-product-count {
+      font-size: 10px; color: var(--gold); margin-top: 4px;
+    }
+    .hero-float-badge {
+      position: absolute; background: var(--white);
+      border-radius: var(--radius); padding: 12px 16px;
+      box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 10px;
+    }
+    .hero-float-badge-1 { top: -20px; right: -24px; }
+    .hero-float-badge-2 { bottom: -20px; left: -24px; }
+    .hero-badge-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .hero-badge-text { line-height: 1.2; }
+    .hero-badge-num {
+      font-family: var(--syne); font-size: 16px; font-weight: 800; color: var(--text-dark);
+    }
+    .hero-badge-label {
+      font-size: 11px; color: var(--text-light); font-weight: 500;
+    }
+
+    /* ── STATS BAR ──────────────────────────────── */
+    #stats-bar {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(201,153,58,.15);
+      border-bottom: 1px solid rgba(201,153,58,.15);
+      padding: 28px 0;
+    }
+    .stats-bar-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center; padding: 8px 20px;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--syne); font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800; color: var(--gold); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500;
+    }
+
+    /* ── MARQUEE ────────────────────────────────── */
+    #marquee {
+      background: var(--gold); overflow: hidden;
+      padding: 14px 0;
+    }
+    .marquee-track {
+      display: flex; gap: 0; animation: marquee-scroll 28s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 32px;
+      font-family: var(--syne); font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--navy);
+    }
+    .marquee-sep {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: rgba(8,17,31,.3); flex-shrink: 0;
+    }
+
+    /* ── CATEGORIES ─────────────────────────────── */
+    #categories { padding: 96px 0; background: var(--off-white); }
+    .categories-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 52px; gap: 24px; flex-wrap: wrap;
+    }
+    .categories-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .category-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 28px 24px;
+      cursor: pointer; transition: all var(--trans); position: relative;
+      overflow: hidden; text-decoration: none;
+    }
+    .category-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform var(--trans);
+    }
+    .category-card:hover {
+      transform: translateY(-6px); box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .category-card:hover::after { transform: scaleX(1); }
+    .cat-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 16px;
+    }
+    .cat-name {
+      font-family: var(--syne); font-size: 15px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 6px;
+    }
+    .cat-count {
+      font-size: 13px; color: var(--text-light);
+    }
+    .cat-arrow {
+      position: absolute; top: 24px; right: 24px;
+      font-size: 18px; color: var(--gray-200);
+      transition: all var(--trans);
+    }
+    .category-card:hover .cat-arrow { color: var(--gold); transform: translateX(4px) translateY(-4px); }
+
+    /* ── FEATURED PRODUCTS ──────────────────────── */
+    #products { padding: 96px 0; }
+    .products-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 52px; gap: 24px; flex-wrap: wrap;
+    }
+    .products-tabs {
+      display: flex; gap: 6px; background: var(--gray-100);
+      padding: 5px; border-radius: var(--radius-sm); flex-wrap: wrap;
+    }
+    .products-tab {
+      font-family: var(--syne); font-size: 13px; font-weight: 600;
+      padding: 8px 18px; border-radius: 6px; cursor: pointer;
+      border: none; background: none; color: var(--text-mid);
+      transition: all var(--trans);
+    }
+    .products-tab.active {
+      background: var(--white); color: var(--navy);
+      box-shadow: var(--shadow-sm);
+    }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .product-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); overflow: hidden;
+      transition: all var(--trans); cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .product-image {
+      height: 200px; position: relative; overflow: hidden;
+    }
+    .product-image-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px;
+    }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px;
+    }
+    .product-origin {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(0,0,0,.55); backdrop-filter: blur(8px);
+      color: var(--white); font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .product-body { padding: 20px 22px; }
+    .product-name {
+      font-family: var(--syne); font-size: 15.5px; font-weight: 700;
+      color: var(--text-dark); margin: 8px 0 6px; line-height: 1.3;
+    }
+    .product-desc {
+      font-size: 13.5px; color: var(--text-light); line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .product-meta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px;
+    }
+    .product-meta-item {}
+    .product-meta-key {
+      font-size: 11px; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; color: var(--text-light); margin-bottom: 2px;
+    }
+    .product-meta-val {
+      font-family: var(--syne); font-size: 14px; font-weight: 700; color: var(--text-dark);
+    }
+    .product-price { color: var(--gold); }
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; border-top: 1px solid var(--gray-100);
+    }
+    .product-stars { display: flex; gap: 2px; }
+    .star { color: var(--gold); font-size: 13px; }
+    .star.empty { color: var(--gray-200); }
+    .product-reviews { font-size: 12px; color: var(--text-light); margin-left: 4px; }
+    .product-cta {
+      font-family: var(--syne); font-size: 13px; font-weight: 600;
+      color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 4px;
+      transition: gap var(--trans);
+    }
+    .product-cta:hover { gap: 8px; }
+
+    /* ── WHY WALSTALL ────────────────────────────── */
+    #why { padding: 96px 0; background: var(--navy); position: relative; overflow: hidden; }
+    .why-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201,153,58,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,153,58,.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .why-glow {
+      position: absolute; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,153,58,.07), transparent 65%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .why-content { position: relative; z-index: 2; }
+    .why-header { text-align: center; margin-bottom: 64px; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .why-card {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius-lg); padding: 32px 26px;
+      transition: all var(--trans);
+    }
+    .why-card:hover {
+      background: rgba(201,153,58,.06); border-color: rgba(201,153,58,.25);
+      transform: translateY(-4px);
+    }
+    .why-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: rgba(201,153,58,.12); border: 1px solid rgba(201,153,58,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 20px;
+    }
+    .why-title {
+      font-family: var(--syne); font-size: 17px; font-weight: 700;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .why-text {
+      font-size: 14px; line-height: 1.68; color: rgba(255,255,255,.5);
+    }
+    .why-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--syne); font-size: 13px; font-weight: 600;
+      color: var(--gold); text-decoration: none; margin-top: 16px;
+      transition: gap var(--trans);
+    }
+    .why-link:hover { gap: 10px; }
+
+    /* ── GLOBAL REACH ────────────────────────────── */
+    #global { padding: 96px 0; background: var(--off-white); }
+    .global-header { text-align: center; margin-bottom: 64px; }
+    .global-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .region-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 28px 26px;
+      transition: all var(--trans); overflow: hidden; position: relative;
+    }
+    .region-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; transform: scaleX(0); transform-origin: left;
+      transition: transform var(--trans);
+    }
+    .region-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .region-card:hover::before { transform: scaleX(1); }
+    .region-card.r1::before { background: linear-gradient(90deg, #FF6B6B, #FF8E53); }
+    .region-card.r2::before { background: linear-gradient(90deg, #4ECDC4, #44A08D); }
+    .region-card.r3::before { background: linear-gradient(90deg, #667EEA, #764BA2); }
+    .region-card.r4::before { background: linear-gradient(90deg, #F7971E, #FFD200); }
+    .region-card.r5::before { background: linear-gradient(90deg, #56CCF2, #2F80ED); }
+    .region-card.r6::before { background: linear-gradient(90deg, #A8E063, #56AB2F); }
+    .region-flag { font-size: 36px; margin-bottom: 14px; display: block; }
+    .region-name {
+      font-family: var(--syne); font-size: 18px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 8px;
+    }
+    .region-desc {
+      font-size: 13.5px; color: var(--text-light); margin-bottom: 18px; line-height: 1.55;
+    }
+    .region-stats { display: flex; gap: 20px; }
+    .region-stat {}
+    .region-stat-num {
+      font-family: var(--syne); font-size: 18px; font-weight: 800;
+      color: var(--text-dark);
+    }
+    .region-stat-label {
+      font-size: 12px; color: var(--text-light);
+    }
+
+    /* ── HOW IT WORKS ────────────────────────────── */
+    #how { padding: 96px 0; }
+    .how-header { text-align: center; margin-bottom: 64px; }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      position: relative;
+    }
+    .how-steps::before {
+      content: ''; position: absolute; top: 44px; left: 12%;
+      width: 76%; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+      z-index: 0;
+    }
+    .how-step {
+      text-align: center; padding: 0 20px; position: relative; z-index: 1;
+    }
+    .how-step-num {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--navy); border: 3px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--syne); font-size: 28px; font-weight: 800; color: var(--gold);
+      margin: 0 auto 24px; transition: all var(--trans);
+      box-shadow: 0 0 0 8px var(--white);
+    }
+    .how-step:hover .how-step-num {
+      background: var(--gold); color: var(--navy); transform: scale(1.1);
+    }
+    .how-step-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+    .how-step-title {
+      font-family: var(--syne); font-size: 17px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 10px;
+    }
+    .how-step-text {
+      font-size: 14px; color: var(--text-mid); line-height: 1.65;
+    }
+
+    /* ── COUNTER ─────────────────────────────────── */
+    #counter {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy-light) 100%);
+      position: relative; overflow: hidden;
+    }
+    .counter-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(201,153,58,.08), transparent 65%);
+      pointer-events: none;
+    }
+    .counter-grid {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    }
+    .counter-item { text-align: center; }
+    .counter-num {
+      font-family: var(--syne); font-size: clamp(36px, 4vw, 56px);
+      font-weight: 800; color: var(--gold); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .counter-label {
+      font-size: 15px; color: rgba(255,255,255,.55); font-weight: 500;
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────── */
+    #testimonials { padding: 96px 0; background: var(--off-white); }
+    .testimonials-header { text-align: center; margin-bottom: 60px; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .testi-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      transition: all var(--trans);
+    }
+    .testi-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .testi-stars { display: flex; gap: 3px; margin-bottom: 18px; }
+    .testi-quote {
+      font-size: 15px; line-height: 1.72; color: var(--text-mid);
+      margin-bottom: 24px;
+      font-family: var(--serif); font-style: italic;
+    }
+    .testi-footer { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--syne); font-weight: 700; font-size: 16px; color: var(--gold);
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-family: var(--syne); font-size: 14px; font-weight: 700; color: var(--text-dark);
+    }
+    .testi-role { font-size: 12.5px; color: var(--text-light); }
+    .testi-verified {
+      margin-left: auto; font-size: 11px; font-weight: 600;
+      color: var(--success); display: flex; align-items: center; gap: 4px;
+    }
+
+    /* ── PARTNERS ────────────────────────────────── */
+    #partners { padding: 72px 0; border-top: 1px solid var(--gray-100); }
+    .partners-header { text-align: center; margin-bottom: 48px; }
+    .partners-header p {
+      font-size: 14px; color: var(--text-light); font-weight: 500;
+      letter-spacing: .05em; text-transform: uppercase;
+    }
+    .partners-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; align-items: center;
+    }
+    .partner-logo {
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: var(--radius); height: 64px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--syne); font-weight: 700; font-size: 13px;
+      color: var(--gray-400); letter-spacing: .05em;
+      transition: all var(--trans); cursor: pointer;
+    }
+    .partner-logo:hover { background: var(--white); border-color: var(--gold); color: var(--navy); box-shadow: var(--shadow-sm); }
+
+    /* ── CTA BAND ─────────────────────────────────── */
+    #cta-band {
+      padding: 96px 0;
+      background: var(--navy);
+      position: relative; overflow: hidden;
+    }
+    .cta-band-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 10% 50%, rgba(201,153,58,.12), transparent 50%),
+        radial-gradient(circle at 90% 50%, rgba(26,50,86,.5), transparent 50%);
+      pointer-events: none;
+    }
+    .cta-band-inner {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-band-text {}
+    .cta-band-title {
+      font-family: var(--syne); font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800; color: var(--white); line-height: 1.15;
+      max-width: 540px; margin-bottom: 14px;
+    }
+    .cta-band-title span { color: var(--gold); }
+    .cta-band-sub {
+      font-size: 16px; color: rgba(255,255,255,.55); max-width: 460px;
+    }
+    .cta-band-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta-band-form {
+      display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap;
+    }
+    .cta-input {
+      flex: 1; min-width: 220px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-sm); padding: 13px 18px;
+      font-family: var(--inter); font-size: 14px; color: var(--white);
+      outline: none; transition: border-color var(--trans);
+    }
+    .cta-input::placeholder { color: rgba(255,255,255,.35); }
+    .cta-input:focus { border-color: var(--gold); }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    #footer {
+      background: var(--navy); border-top: 1px solid rgba(255,255,255,.06);
+      padding: 80px 0 0;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+      gap: 48px; margin-bottom: 60px;
+    }
+    .footer-brand {}
+    .footer-logo {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 18px; text-decoration: none;
+    }
+    .footer-logo-mark {
+      width: 32px; height: 32px; border-radius: 7px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--syne); font-size: 16px; font-weight: 800; color: var(--navy);
+    }
+    .footer-logo-text {
+      font-family: var(--syne); font-size: 18px; font-weight: 800;
+      color: var(--white); letter-spacing: .02em;
+    }
+    .footer-tagline {
+      font-size: 14px; color: rgba(255,255,255,.4); line-height: 1.6;
+      max-width: 260px; margin-bottom: 24px;
+    }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.5); font-size: 15px; cursor: pointer;
+      transition: all var(--trans); text-decoration: none;
+    }
+    .social-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+    .footer-col {}
+    .footer-col-title {
+      font-family: var(--syne); font-size: 13px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 14px; color: rgba(255,255,255,.45); text-decoration: none;
+      transition: color var(--trans);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-newsletter {}
+    .footer-newsletter-text {
+      font-size: 14px; color: rgba(255,255,255,.45); margin-bottom: 16px; line-height: 1.6;
+    }
+    .footer-newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+    .footer-input {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-sm); padding: 11px 16px;
+      font-family: var(--inter); font-size: 14px; color: var(--white);
+      outline: none; transition: border-color var(--trans);
+    }
+    .footer-input::placeholder { color: rgba(255,255,255,.25); }
+    .footer-input:focus { border-color: rgba(201,153,58,.5); }
+    .footer-contact-items { display: flex; flex-direction: column; gap: 14px; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; }
+    .footer-contact-icon {
+      width: 32px; height: 32px; border-radius: 7px;
+      background: rgba(201,153,58,.1); display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0; margin-top: 2px;
+    }
+    .footer-contact-text { font-size: 13.5px; color: rgba(255,255,255,.45); line-height: 1.5; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 24px 0; display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .footer-bottom-left {
+      font-size: 13px; color: rgba(255,255,255,.3);
+    }
+    .footer-bottom-right {
+      display: flex; gap: 24px;
+    }
+    .footer-bottom-right a {
+      font-size: 13px; color: rgba(255,255,255,.3);
+      text-decoration: none; transition: color var(--trans);
+    }
+    .footer-bottom-right a:hover { color: var(--gold); }
+    .footer-cert-row {
+      display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap;
+    }
+    .footer-cert {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 6px; padding: 6px 12px;
+      font-size: 11px; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; color: rgba(255,255,255,.3);
+    }
+
+    /* ── SCROLL ANIMATIONS ───────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .reveal-delay-4 { transition-delay: .32s; }
+
+    /* ── BACK TO TOP ─────────────────────────────── */
+    #back-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 500;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--gold); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; box-shadow: var(--shadow-gold);
+      opacity: 0; transform: translateY(12px);
+      transition: all var(--trans); color: var(--navy);
+    }
+    #back-top.visible { opacity: 1; transform: none; }
+    #back-top:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1100px) {
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-right { display: none; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .global-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .how-steps::before { display: none; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-lang { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      .container-wide { padding: 0 20px; }
+      #categories, #products, #why, #global, #how, #testimonials, #partners { padding: 64px 0; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .global-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-band-inner { flex-direction: column; }
+      .hero-ctas { flex-direction: column; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-bottom-right { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────── -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">W</div>
+        <span class="nav-logo-text">WAL<span>STALL</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#categories">Products</a></li>
+        <li><a href="#global">Markets</a></li>
+        <li><a href="#why">Trade Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#testimonials">Clients</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <span class="nav-lang">🌐 EN</span>
+        <a href="#cta-band" class="btn btn-gold">Get a Quote</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#categories" onclick="closeMobile()">Products</a>
+  <a href="#global" onclick="closeMobile()">Markets</a>
+  <a href="#why" onclick="closeMobile()">Trade Services</a>
+  <a href="#how" onclick="closeMobile()">How It Works</a>
+  <a href="#testimonials" onclick="closeMobile()">Clients</a>
+  <a href="#footer" onclick="closeMobile()">Contact</a>
+  <a href="#cta-band" class="btn btn-gold" onclick="closeMobile()">Get a Quote →</a>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow hero-glow-1"></div>
+  <div class="hero-bg-glow hero-glow-2"></div>
+  <div class="hero-bg-glow hero-glow-3"></div>
+  <div class="container hero-content">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-label">
+          <span class="hero-label-dot"></span>
+          Global Trading Platform — Est. Since 2008
+        </div>
+        <h1 class="hero-heading">
+          Where Global<br>
+          <span class="gold-text">Trade Meets</span><br>
+          <span class="italic-text">Excellence.</span>
+        </h1>
+        <p class="hero-sub">
+          Access 50,000+ verified products across 120+ countries. Walstall connects manufacturers, exporters and buyers through a trusted, end-to-end trading platform.
+        </p>
+        <div class="hero-ctas">
+          <a href="#categories" class="btn btn-gold">
+            Explore Products
+            <span class="hero-arrow">→</span>
+          </a>
+          <a href="#how" class="btn btn-outline-white">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card-stack">
+          <div class="hero-float-badge hero-float-badge-1">
+            <div class="hero-badge-icon">📦</div>
+            <div class="hero-badge-text">
+              <div class="hero-badge-num">50K+</div>
+              <div class="hero-badge-label">Products Listed</div>
+            </div>
+          </div>
+          <div class="hero-main-card">
+            <div class="hero-card-label">Browse Categories</div>
+            <div class="hero-product-grid">
+              <div class="hero-product-item">
+                <span class="hero-product-icon">📱</span>
+                <div class="hero-product-name">Electronics</div>
+                <div class="hero-product-count">8,400+</div>
+              </div>
+              <div class="hero-product-item">
+                <span class="hero-product-icon">👗</span>
+                <div class="hero-product-name">Textiles</div>
+                <div class="hero-product-count">12,200+</div>
+              </div>
+              <div class="hero-product-item">
+                <span class="hero-product-icon">🥗</span>
+                <div class="hero-product-name">Food & Bev</div>
+                <div class="hero-product-count">9,100+</div>
+              </div>
+              <div class="hero-product-item">
+                <span class="hero-product-icon">🏠</span>
+                <div class="hero-product-name">Home Goods</div>
+                <div class="hero-product-count">6,800+</div>
+              </div>
+              <div class="hero-product-item">
+                <span class="hero-product-icon">💊</span>
+                <div class="hero-product-name">Health</div>
+                <div class="hero-product-count">4,300+</div>
+              </div>
+              <div class="hero-product-item">
+                <span class="hero-product-icon">⚙️</span>
+                <div class="hero-product-name">Industrial</div>
+                <div class="hero-product-count">7,900+</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-float-badge hero-float-badge-2">
+            <div class="hero-badge-icon">🌍</div>
+            <div class="hero-badge-text">
+              <div class="hero-badge-num">120+</div>
+              <div class="hero-badge-label">Countries Served</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ─────────────────────────────────── -->
+<section id="stats-bar">
+  <div class="container">
+    <div class="stats-bar-inner">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="50000">0</div>
+        <div class="stat-label">Products Available</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="120">0</div>
+        <div class="stat-label">Countries & Territories</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="15000">0</div>
+        <div class="stat-label">Verified Clients</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="98">0</div>
+        <div class="stat-label">% Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ───────────────────────────────────── -->
+<div id="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item"><span>✓</span> ISO 9001 Certified</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> SGS Verified Suppliers</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> WTO Compliant Trading</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> REACH Certified Products</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Fair Trade Standards</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Export Quality Assured</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Escrow Payment Protection</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Global Logistics Network</span>
+    <span class="marquee-sep"></span>
+    <!-- duplicate for infinite loop -->
+    <span class="marquee-item"><span>✓</span> ISO 9001 Certified</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> SGS Verified Suppliers</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> WTO Compliant Trading</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> REACH Certified Products</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Fair Trade Standards</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Export Quality Assured</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Escrow Payment Protection</span>
+    <span class="marquee-sep"></span>
+    <span class="marquee-item"><span>✓</span> Global Logistics Network</span>
+    <span class="marquee-sep"></span>
+  </div>
+</div>
+
+<!-- ─── CATEGORIES ────────────────────────────────── -->
+<section id="categories">
+  <div class="container">
+    <div class="categories-header">
+      <div>
+        <span class="section-label">Product Range</span>
+        <h2 class="section-title">Browse by Category</h2>
+        <p class="section-sub">From consumer electronics to agricultural commodities — discover world-class products across every industry vertical.</p>
+      </div>
+      <a href="#products" class="btn btn-dark">View All Products →</a>
+    </div>
+    <div class="categories-grid">
+      <a href="#" class="category-card reveal">
+        <div class="cat-icon" style="background:#FEF3E2;">📱</div>
+        <div class="cat-name">Electronics & Technology</div>
+        <div class="cat-count">8,400+ products from 42 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal reveal-delay-1">
+        <div class="cat-icon" style="background:#F0FDF4;">👗</div>
+        <div class="cat-name">Textiles & Apparel</div>
+        <div class="cat-count">12,200+ products from 38 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal reveal-delay-2">
+        <div class="cat-icon" style="background:#FFF7ED;">🥗</div>
+        <div class="cat-name">Food & Beverages</div>
+        <div class="cat-count">9,100+ products from 65 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal reveal-delay-3">
+        <div class="cat-icon" style="background:#EEF2FF;">⚙️</div>
+        <div class="cat-name">Industrial Equipment</div>
+        <div class="cat-count">7,900+ products from 28 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal">
+        <div class="cat-icon" style="background:#FDF4FF;">🏠</div>
+        <div class="cat-name">Home & Living</div>
+        <div class="cat-count">6,800+ products from 34 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal reveal-delay-1">
+        <div class="cat-icon" style="background:#F0F9FF;">💊</div>
+        <div class="cat-name">Health & Beauty</div>
+        <div class="cat-count">4,300+ products from 22 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal reveal-delay-2">
+        <div class="cat-icon" style="background:#FFFBEB;">🚗</div>
+        <div class="cat-name">Automotive Parts</div>
+        <div class="cat-count">5,600+ products from 18 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+      <a href="#" class="category-card reveal reveal-delay-3">
+        <div class="cat-icon" style="background:#F0FDF4;">🌾</div>
+        <div class="cat-name">Agricultural Products</div>
+        <div class="cat-count">3,900+ products from 71 countries</div>
+        <span class="cat-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURED PRODUCTS ──────────────────────────── -->
+<section id="products">
+  <div class="container">
+    <div class="products-header">
+      <div>
+        <span class="section-label">Marketplace</span>
+        <h2 class="section-title">Top Export Products</h2>
+        <p class="section-sub">Handpicked, high-demand products with verified suppliers, competitive pricing, and flexible MOQs.</p>
+      </div>
+      <div class="products-tabs">
+        <button class="products-tab active" onclick="filterTab(this,'all')">All</button>
+        <button class="products-tab" onclick="filterTab(this,'trending')">Trending</button>
+        <button class="products-tab" onclick="filterTab(this,'new')">New Arrivals</button>
+        <button class="products-tab" onclick="filterTab(this,'bulk')">Bulk Orders</button>
+      </div>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card reveal">
+        <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+          <div class="product-image-bg">📱</div>
+          <div class="product-badge"><span class="tag">Trending</span></div>
+          <div class="product-origin">🇨🇳 China</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Smart Home Devices — White-Label IoT Bundle</div>
+          <p class="product-desc">Full ecosystem: smart plugs, sensors, hubs & voice-compatible controllers. CE & FCC certified.</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <div class="product-meta-key">MOQ</div>
+              <div class="product-meta-val">500 Units</div>
+            </div>
+            <div class="product-meta-item">
+              <div class="product-meta-key">Price Range</div>
+              <div class="product-meta-val product-price">$8 – $24</div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-stars">
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span>
+                <span class="product-reviews">(214)</span>
+              </div>
+            </div>
+            <a href="#" class="product-cta">View Details <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-image" style="background:linear-gradient(135deg,#134e4a,#0f766e);">
+          <div class="product-image-bg">👗</div>
+          <div class="product-badge"><span class="tag" style="background:#dcfce7;color:#16a34a;">Certified</span></div>
+          <div class="product-origin">🇧🇩 Bangladesh</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Organic Cotton Apparel — Premium Knitwear Line</div>
+          <p class="product-desc">GOTS-certified organic cotton. T-shirts, polos and hoodies. Available in custom prints and sizes.</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <div class="product-meta-key">MOQ</div>
+              <div class="product-meta-val">300 Pieces</div>
+            </div>
+            <div class="product-meta-item">
+              <div class="product-meta-key">Price Range</div>
+              <div class="product-meta-val product-price">$4.50 – $14</div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-stars">
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span>
+                <span class="product-reviews">(389)</span>
+              </div>
+            </div>
+            <a href="#" class="product-cta">View Details <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-image" style="background:linear-gradient(135deg,#78350f,#92400e);">
+          <div class="product-image-bg">☕</div>
+          <div class="product-badge"><span class="tag" style="background:#fef9c3;color:#a16207;">Premium</span></div>
+          <div class="product-origin">🇧🇷 Brazil</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Single-Origin Arabica Coffee — Export Grade AA</div>
+          <p class="product-desc">Rainforest Alliance certified. Freshly roasted to order. 60kg GrainPro jute bags, custom roast profiles.</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <div class="product-meta-key">MOQ</div>
+              <div class="product-meta-val">5 Tons</div>
+            </div>
+            <div class="product-meta-item">
+              <div class="product-meta-key">Price Range</div>
+              <div class="product-meta-val product-price">$3.20 – $6.80/kg</div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-stars">
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span>
+                <span class="product-reviews">(541)</span>
+              </div>
+            </div>
+            <a href="#" class="product-cta">View Details <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-image" style="background:linear-gradient(135deg,#1e1b4b,#312e81);">
+          <div class="product-image-bg">⚙️</div>
+          <div class="product-badge"><span class="tag" style="background:#ede9fe;color:#7c3aed;">Industrial</span></div>
+          <div class="product-origin">🇩🇪 Germany</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">CNC Precision Components — Aerospace Grade</div>
+          <p class="product-desc">Aluminium & titanium alloy parts. AS9100D certified. Custom drawings accepted. ±0.005mm tolerance.</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <div class="product-meta-key">MOQ</div>
+              <div class="product-meta-val">50 Pieces</div>
+            </div>
+            <div class="product-meta-item">
+              <div class="product-meta-key">Price Range</div>
+              <div class="product-meta-val product-price">$18 – $420</div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-stars">
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star empty">★</span>
+                <span class="product-reviews">(97)</span>
+              </div>
+            </div>
+            <a href="#" class="product-cta">View Details <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-image" style="background:linear-gradient(135deg,#052e16,#14532d);">
+          <div class="product-image-bg">🌿</div>
+          <div class="product-badge"><span class="tag" style="background:#dcfce7;color:#15803d;">Organic</span></div>
+          <div class="product-origin">🇮🇳 India</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Ayurvedic Wellness Range — Private Label Ready</div>
+          <p class="product-desc">Ashwagandha, turmeric & neem formulations. USDA Organic & EU certified. Custom branding available.</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <div class="product-meta-key">MOQ</div>
+              <div class="product-meta-val">1,000 Units</div>
+            </div>
+            <div class="product-meta-item">
+              <div class="product-meta-key">Price Range</div>
+              <div class="product-meta-val product-price">$2.80 – $12</div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-stars">
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span>
+                <span class="product-reviews">(312)</span>
+              </div>
+            </div>
+            <a href="#" class="product-cta">View Details <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-image" style="background:linear-gradient(135deg,#3f1212,#7f1d1d);">
+          <div class="product-image-bg">🚗</div>
+          <div class="product-badge"><span class="tag" style="background:#fee2e2;color:#dc2626;">OEM</span></div>
+          <div class="product-origin">🇯🇵 Japan</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Automotive Brake Systems — OEM Grade Parts</div>
+          <p class="product-desc">Disc brakes, calipers & ABS modules. IATF 16949 certified. Compatible with all major vehicle platforms.</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <div class="product-meta-key">MOQ</div>
+              <div class="product-meta-val">200 Sets</div>
+            </div>
+            <div class="product-meta-item">
+              <div class="product-meta-key">Price Range</div>
+              <div class="product-meta-val product-price">$45 – $320</div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div>
+              <div class="product-stars">
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span><span class="star">★</span>
+                <span class="star">★</span>
+                <span class="product-reviews">(178)</span>
+              </div>
+            </div>
+            <a href="#" class="product-cta">View Details <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY WALSTALL ───────────────────────────────── -->
+<section id="why">
+  <div class="why-bg"></div>
+  <div class="why-glow"></div>
+  <div class="why-content container">
+    <div class="why-header">
+      <span class="section-label">Our Advantage</span>
+      <h2 class="section-title light">Why Trading Companies<br>Choose Walstall</h2>
+      <p class="section-sub light" style="margin:14px auto 0;">We've spent 15+ years building the infrastructure, relationships and processes that make global trade seamless.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🔍</div>
+        <div class="why-title">Verified Suppliers</div>
+        <p class="why-text">Every supplier undergoes a 12-point verification: on-site audits, financial checks, certification validation and trade history review.</p>
+        <a href="#" class="why-link">Learn about verification →</a>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">Quality Assurance</div>
+        <p class="why-text">Pre-shipment inspection, third-party lab testing and our 30-day quality guarantee ensure every shipment meets spec — or we reship free.</p>
+        <a href="#" class="why-link">View QA process →</a>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">💳</div>
+        <div class="why-title">Trade Finance</div>
+        <p class="why-text">Access Letters of Credit, escrow services, invoice financing and flexible payment terms through our network of 40+ banking partners worldwide.</p>
+        <a href="#" class="why-link">Explore financing →</a>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🚢</div>
+        <div class="why-title">End-to-End Logistics</div>
+        <p class="why-text">From factory floor to your door. We manage freight, customs clearance, documentation and last-mile delivery across 120+ countries.</p>
+        <a href="#" class="why-link">Track a shipment →</a>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⚖️</div>
+        <div class="why-title">Legal & Compliance</div>
+        <p class="why-text">Our in-house compliance team navigates sanctions lists, import/export regulations, tariff classifications and trade agreements for you.</p>
+        <a href="#" class="why-link">Compliance services →</a>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">🌐</div>
+        <div class="why-title">Market Intelligence</div>
+        <p class="why-text">Real-time commodity pricing, demand forecasting and competitive benchmarking across all major import/export corridors.</p>
+        <a href="#" class="why-link">View market data →</a>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Dedicated Account Team</div>
+        <p class="why-text">Every client gets a named account manager with regional expertise, available across time zones to keep your trades on track.</p>
+        <a href="#" class="why-link">Meet our team →</a>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">📊</div>
+        <div class="why-title">Trade Analytics Dashboard</div>
+        <p class="why-text">Monitor your full portfolio in one place: order status, spend analytics, supplier performance scores and delivery timelines.</p>
+        <a href="#" class="why-link">Dashboard preview →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GLOBAL REACH ───────────────────────────────── -->
+<section id="global">
+  <div class="container">
+    <div class="global-header">
+      <span class="section-label">Coverage</span>
+      <h2 class="section-title">Operating Across 6 Continents</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Deep regional expertise backed by on-the-ground teams, local compliance knowledge and established carrier networks.</p>
+    </div>
+    <div class="global-grid">
+      <div class="region-card r1 reveal">
+        <span class="region-flag">🌏</span>
+        <div class="region-name">Asia Pacific</div>
+        <p class="region-desc">Manufacturing hub of the world. Electronics, textiles, chemicals and tech hardware at competitive price-points.</p>
+        <div class="region-stats">
+          <div class="region-stat">
+            <div class="region-stat-num">38</div>
+            <div class="region-stat-label">Countries</div>
+          </div>
+          <div class="region-stat">
+            <div class="region-stat-num">$980M+</div>
+            <div class="region-stat-label">Trade Volume</div>
+          </div>
+        </div>
+      </div>
+      <div class="region-card r2 reveal reveal-delay-1">
+        <span class="region-flag">🇪🇺</span>
+        <div class="region-name">Europe</div>
+        <p class="region-desc">Premium goods, precision engineering and luxury categories. Strong IP protection and quality standards.</p>
+        <div class="region-stats">
+          <div class="region-stat">
+            <div class="region-stat-num">28</div>
+            <div class="region-stat-label">Countries</div>
+          </div>
+          <div class="region-stat">
+            <div class="region-stat-num">$420M+</div>
+            <div class="region-stat-label">Trade Volume</div>
+          </div>
+        </div>
+      </div>
+      <div class="region-card r3 reveal reveal-delay-2">
+        <span class="region-flag">🌎</span>
+        <div class="region-name">Americas</div>
+        <p class="region-desc">Agricultural exports, automotive, consumer goods and natural resources across North and South America.</p>
+        <div class="region-stats">
+          <div class="region-stat">
+            <div class="region-stat-num">22</div>
+            <div class="region-stat-label">Countries</div>
+          </div>
+          <div class="region-stat">
+            <div class="region-stat-num">$310M+</div>
+            <div class="region-stat-label">Trade Volume</div>
+          </div>
+        </div>
+      </div>
+      <div class="region-card r4 reveal">
+        <span class="region-flag">🌍</span>
+        <div class="region-name">Middle East & Africa</div>
+        <p class="region-desc">Fast-growing consumer market. Oil & gas equipment, FMCG, construction materials and telecom infrastructure.</p>
+        <div class="region-stats">
+          <div class="region-stat">
+            <div class="region-stat-num">42</div>
+            <div class="region-stat-label">Countries</div>
+          </div>
+          <div class="region-stat">
+            <div class="region-stat-num">$195M+</div>
+            <div class="region-stat-label">Trade Volume</div>
+          </div>
+        </div>
+      </div>
+      <div class="region-card r5 reveal reveal-delay-1">
+        <span class="region-flag">🇮🇳</span>
+        <div class="region-name">South Asia</div>
+        <p class="region-desc">Textiles, pharmaceuticals, IT services, jewellery and agricultural products. Highly skilled manufacturing base.</p>
+        <div class="region-stats">
+          <div class="region-stat">
+            <div class="region-stat-num">8</div>
+            <div class="region-stat-label">Countries</div>
+          </div>
+          <div class="region-stat">
+            <div class="region-stat-num">$240M+</div>
+            <div class="region-stat-label">Trade Volume</div>
+          </div>
+        </div>
+      </div>
+      <div class="region-card r6 reveal reveal-delay-2">
+        <span class="region-flag">🌊</span>
+        <div class="region-name">Oceania</div>
+        <p class="region-desc">Premium food & beverages, natural resources, livestock and high-value agricultural commodities.</p>
+        <div class="region-stats">
+          <div class="region-stat">
+            <div class="region-stat-num">6</div>
+            <div class="region-stat-label">Countries</div>
+          </div>
+          <div class="region-stat">
+            <div class="region-stat-num">$85M+</div>
+            <div class="region-stat-label">Trade Volume</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ───────────────────────────────── -->
+<section id="how">
+  <div class="container">
+    <div class="how-header">
+      <span class="section-label">Process</span>
+      <h2 class="section-title">Start Trading in 4 Simple Steps</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">From first contact to final delivery, Walstall handles the complexity so you can focus on your business.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-step-num">01</div>
+        <span class="how-step-icon">🔍</span>
+        <div class="how-step-title">Browse & Source</div>
+        <p class="how-step-text">Search our curated catalogue of 50,000+ verified products. Filter by MOQ, price, origin, certification and delivery lead time.</p>
+      </div>
+      <div class="how-step reveal reveal-delay-1">
+        <div class="how-step-num">02</div>
+        <span class="how-step-icon">🤝</span>
+        <div class="how-step-title">Connect & Negotiate</div>
+        <p class="how-step-text">Chat directly with verified suppliers. Our trade advisors help you negotiate pricing, terms and customisation requirements.</p>
+      </div>
+      <div class="how-step reveal reveal-delay-2">
+        <div class="how-step-num">03</div>
+        <span class="how-step-icon">🔒</span>
+        <div class="how-step-title">Pay Securely</div>
+        <p class="how-step-text">Use escrow, LC or flexible payment terms. Funds are only released to suppliers once goods pass inspection and you confirm receipt.</p>
+      </div>
+      <div class="how-step reveal reveal-delay-3">
+        <div class="how-step-num">04</div>
+        <span class="how-step-icon">📦</span>
+        <div class="how-step-title">Receive & Scale</div>
+        <p class="how-step-text">We handle freight, customs and last-mile delivery. Track your shipment in real time and scale orders as your business grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COUNTER ────────────────────────────────────── -->
+<section id="counter">
+  <div class="counter-glow"></div>
+  <div class="container">
+    <div class="counter-grid">
+      <div class="counter-item reveal">
+        <div class="counter-num" data-target="2.3" data-suffix="B+">$0</div>
+        <div class="counter-label">Annual Trade Volume</div>
+      </div>
+      <div class="counter-item reveal reveal-delay-1">
+        <div class="counter-num" data-target="15000" data-suffix="+">0</div>
+        <div class="counter-label">Verified Global Clients</div>
+      </div>
+      <div class="counter-item reveal reveal-delay-2">
+        <div class="counter-num" data-target="3200" data-suffix="+">0</div>
+        <div class="counter-label">Certified Suppliers</div>
+      </div>
+      <div class="counter-item reveal reveal-delay-3">
+        <div class="counter-num" data-target="98" data-suffix="%">0</div>
+        <div class="counter-label">On-Time Delivery Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ──────────────────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="section-label">Client Stories</span>
+      <h2 class="section-title">Trusted by Traders Worldwide</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Don't take our word for it — here's what our clients say after years of working with Walstall.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testi-quote">"Walstall transformed our sourcing operation. We cut procurement costs by 34% in our first year, and the quality has been consistently excellent. Their compliance team saved us from a potential regulatory nightmare."</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">SK</div>
+          <div>
+            <div class="testi-name">Sarah Kowalski</div>
+            <div class="testi-role">Head of Procurement, Meridian Retail Group</div>
+          </div>
+          <div class="testi-verified">✓ Verified</div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testi-quote">"As a small exporter entering European markets, Walstall gave us access to a distribution network that would have taken years to build independently. The trade finance options made it possible to scale without cash flow stress."</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">RA</div>
+          <div>
+            <div class="testi-name">Rajan Acharya</div>
+            <div class="testi-role">Founder, HimalCraft Exports, Nepal</div>
+          </div>
+          <div class="testi-verified">✓ Verified</div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testi-quote">"The pre-shipment inspection process and dedicated account manager give us complete peace of mind. We've scaled from $200K to $4M in annual imports over three years — Walstall has been central to that growth."</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">LM</div>
+          <div>
+            <div class="testi-name">Luisa Mendez</div>
+            <div class="testi-role">COO, Orbita Consumer Goods, Mexico</div>
+          </div>
+          <div class="testi-verified">✓ Verified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PARTNERS ───────────────────────────────────── -->
+<section id="partners">
+  <div class="container">
+    <div class="partners-header">
+      <p>Trusted by leading organisations and certified by global standards bodies</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-logo reveal">ISO 9001</div>
+      <div class="partner-logo reveal reveal-delay-1">SGS Group</div>
+      <div class="partner-logo reveal reveal-delay-2">Bureau Veritas</div>
+      <div class="partner-logo reveal reveal-delay-3">DHL Express</div>
+      <div class="partner-logo reveal reveal-delay-1">Maersk</div>
+      <div class="partner-logo reveal reveal-delay-2">IFC Partner</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BAND ───────────────────────────────────── -->
+<section id="cta-band">
+  <div class="cta-band-bg"></div>
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <div class="cta-band-title">
+          Ready to Scale Your<br>
+          <span>Global Trading</span> Operations?
+        </div>
+        <p class="cta-band-sub">Join 15,000+ businesses already trading smarter with Walstall. Get a personalised quote within 24 hours.</p>
+        <div class="cta-band-form">
+          <input type="email" class="cta-input" placeholder="Your business email address" />
+          <button class="btn btn-gold">Get a Free Quote →</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:12px;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);">
+          <span style="font-size:24px;">📞</span>
+          <div>
+            <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:var(--white);">Call Us Directly</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.45);">+1 (800) 925-7800</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);">
+          <span style="font-size:24px;">💬</span>
+          <div>
+            <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:var(--white);">Live Chat</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.45);">Avg. response: 4 minutes</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);">
+          <span style="font-size:24px;">📧</span>
+          <div>
+            <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:var(--white);">Email Us</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.45);">trade@walstall.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────── -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-mark">W</div>
+          <span class="footer-logo-text">WALSTALL</span>
+        </a>
+        <p class="footer-tagline">Your trusted partner for global consumer goods trading and exports. Connecting markets, creating value.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">◻</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▷</a>
+        </div>
+        <div class="footer-cert-row">
+          <span class="footer-cert">ISO 9001</span>
+          <span class="footer-cert">WTO Compliant</span>
+          <span class="footer-cert">SGS Verified</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links">
+          <li><a href="#">Electronics & Tech</a></li>
+          <li><a href="#">Textiles & Apparel</a></li>
+          <li><a href="#">Food & Beverages</a></li>
+          <li><a href="#">Industrial Equipment</a></li>
+          <li><a href="#">Home & Living</a></li>
+          <li><a href="#">Health & Beauty</a></li>
+          <li><a href="#">Automotive Parts</a></li>
+          <li><a href="#">Agricultural Products</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Supplier Sourcing</a></li>
+          <li><a href="#">Quality Inspection</a></li>
+          <li><a href="#">Trade Finance</a></li>
+          <li><a href="#">Logistics & Freight</a></li>
+          <li><a href="#">Customs Clearance</a></li>
+          <li><a href="#">Legal & Compliance</a></li>
+          <li><a href="#">Market Intelligence</a></li>
+          <li><a href="#">Private Labelling</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Walstall</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Blog & Insights</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <div class="footer-col-title">Stay Informed</div>
+        <p class="footer-newsletter-text">Weekly trade intelligence: market rates, new products, regulatory updates and export opportunities.</p>
+        <div class="footer-newsletter-form">
+          <input type="email" class="footer-input" placeholder="Email address" />
+          <button class="btn btn-gold" style="justify-content:center;">Subscribe →</button>
+        </div>
+        <div class="footer-contact-items" style="margin-top:24px;">
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">📍</div>
+            <div class="footer-contact-text">14 Trade Centre, London EC1A 2BN, United Kingdom</div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">📞</div>
+            <div class="footer-contact-text">+1 (800) 925-7800<br>Mon–Fri, 08:00–20:00 UTC</div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">✉️</div>
+            <div class="footer-contact-text">trade@walstall.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2026 Walstall Ltd. All rights reserved. Registered in England & Wales No. 09182731.</div>
+      <div class="footer-bottom-right">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── BACK TO TOP ────────────────────────────────── -->
+<button id="back-top" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
+<!-- ─── SCRIPTS ───────────────────────────────────── -->
+<script>
+  // ── Nav scroll effect ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // ── Back to top ──
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Reveal on scroll ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // trigger counter if applicable
+        const num = e.target.querySelector('[data-target]');
+        if (num && !num.dataset.counted) animateCounter(num);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Also observe stat nums directly (they're inside .reveal)
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.counted) {
+        animateCounter(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-target]').forEach(el => sectionObserver.observe(el));
+
+  // ── Counter animation ──
+  function animateCounter(el) {
+    el.dataset.counted = '1';
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '+';
+    const prefix = el.closest('#stats-bar') ? '' : '';
+    const isDecimal = String(target).includes('.');
+    const isDollar = el.closest('#counter') && target === 2.3;
+    const duration = 1800;
+    const start = performance.now();
+
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      let value = target * eased;
+
+      if (isDollar) {
+        el.textContent = '$' + value.toFixed(1) + suffix;
+      } else if (isDecimal) {
+        el.textContent = value.toFixed(1) + suffix;
+      } else {
+        const rounded = Math.floor(value);
+        // format thousands
+        el.textContent = rounded.toLocaleString() + (progress >= 1 ? suffix : '');
+      }
+
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // ── Stats bar counter (different formatting) ──
+  document.querySelectorAll('#stats-bar [data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.counted) {
+          e.target.dataset.counted = '1';
+          const dur = 1600;
+          const s = performance.now();
+          function tick(now) {
+            const p = Math.min((now - s) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const v = Math.floor(target * eased);
+            const suffix = target === 98 ? '%' : (target >= 1000 ? ',000+' : '+');
+            if (target >= 1000) {
+              e.target.textContent = Math.floor(v / 1000) + 'K+';
+            } else {
+              e.target.textContent = v + (target === 98 ? '%' : '+');
+            }
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+      });
+    }, { threshold: 0.5 });
+    statObserver.observe(el);
+  });
+
+  // ── Products tab ──
+  function filterTab(btn, filter) {
+    document.querySelectorAll('.products-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // ── Smooth anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
